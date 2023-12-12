@@ -25,4 +25,12 @@ git clone https://github.com/lecoqjacob/AstroVimUser ~/.config/nvim
 nvim --headless +q
 ```
 
-## 🛠️ Contributing
+## Contributing
+
+We welcome contributions from the community to enhance Review App further. If you're interested in contributing, please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to get started.
+
+## License
+
+This project is licensed under the [Apache License v2.0](https://github.com/lecoqjacob/AstroVimUser/blob/main/LICENSE).
+
+![Alt](https://repobeats.axiom.co/api/embed/feb0e653ff778809e8110386f6697d92a7150068.svg "Repobeats analytics image")
