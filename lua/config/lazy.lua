@@ -7,6 +7,7 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 local USE_STABLE = false
+local icons = require("icons")
 
 ---@type LazyConfig
 local lazy_opts = {
@@ -32,25 +33,25 @@ local lazy_opts = {
     -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "double",
 
-    -- icons = {
-    --   ft = icons.File,
-    --   lazy = icons.Lazy,
-    --   task = icons.Check,
-    --   config = icons.Gear,
-    --   event = icons.Event,
-    --   cmd = icons.Terminal,
-    --   init = icons.LazyInit,
-    --   keys = icons.Keyboard,
-    --   plugin = icons.Package,
-    --   runtime = icons.NeoVim,
-    --   start = icons.LazyStart,
-    --   import = icons.FileImport,
-    --   source = icons.SourceCode,
-    --   require = icons.LazyRequire,
-    --   loaded = icons.PackageLoaded,
-    --   not_loaded = icons.PackageUninstalled,
-    --   list = { "●", "➜", "★", "‒" },
-    -- },
+    icons = {
+      ft = icons.File,
+      lazy = icons.Lazy,
+      task = icons.Check,
+      config = icons.Gear,
+      event = icons.Event,
+      cmd = icons.Terminal,
+      init = icons.LazyInit,
+      keys = icons.Keyboard,
+      plugin = icons.Package,
+      runtime = icons.NeoVim,
+      start = icons.LazyStart,
+      import = icons.FileImport,
+      source = icons.SourceCode,
+      require = icons.LazyRequire,
+      loaded = icons.PackageLoaded,
+      not_loaded = icons.PackageUninstalled,
+      list = { "●", "➜", "★", "‒" },
+    },
   },
 
   performance = {

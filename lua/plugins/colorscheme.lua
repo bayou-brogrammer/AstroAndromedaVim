@@ -88,11 +88,22 @@ return {
 
   {
     "craftzdog/solarized-osaka.nvim",
-    lazy = false,
     priority = 1000,
     cond = Andromeda.default_colorscheme == "solarized-osaka",
-    init = function() Andromeda.default_colorscheme = "solarized-osaka" end,
     opts = { transparent = true },
+  },
+
+  {
+    "maxmx03/fluoromachine.nvim",
+    config = function()
+      local fm = require("fluoromachine")
+
+      fm.setup({
+        glow = true,
+        theme = "retrowave",
+        transparent = "full",
+      })
+    end,
   },
 
   -- >>>>>>>>>>>>>>>>>>>>>>>>>>>> UI  <<<<<<<<<<<<<<<<<<<<<<<<<<<< --
@@ -103,7 +114,7 @@ return {
     ---@type AstroUIOpts
     opts = {
       icons = require("icons"),
-      colorscheme = Andromeda.default_colorscheme,
+      colorscheme = "fluoromachine",
     },
   },
 }

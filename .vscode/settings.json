@@ -1,6 +1,6 @@
 {
   "Lua.workspace.library": [
-    // "/Users/jlecoq@dnanexus.com/.local/share/astro/lazy",
-    "/home/n16hth4wk/.local/share/astro/lazy"
+    "/Users/jlecoq@dnanexus.com/.local/share/astro/lazy"
+    // "/home/n16hth4wk/.local/share/astro/lazy"
   ]
 }
