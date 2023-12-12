@@ -17,7 +17,6 @@ return {
 
   {
     "lvim-tech/lvim-colorscheme",
-    cond = false,
     priority = 100,
     opts = {
       style = "dark", -- dark, darksoft, light
@@ -55,7 +54,6 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    cond = Andromeda.default_colorscheme == "catppuccin",
     opts = {
       integrations = {
         sandwich = false,
@@ -76,7 +74,6 @@ return {
     -- Theme inspired by Atom
     "navarasu/onedark.nvim",
     priority = 1000,
-    cond = Andromeda.default_colorscheme == "onedark",
     opts = {
       style = "dark", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
       term_colors = true, -- Change terminal color as per the selected theme style
@@ -89,7 +86,6 @@ return {
   {
     "craftzdog/solarized-osaka.nvim",
     priority = 1000,
-    cond = Andromeda.default_colorscheme == "solarized-osaka",
     opts = { transparent = true },
   },
 
@@ -101,12 +97,23 @@ return {
       fm.setup({
         glow = true,
         theme = "retrowave",
-        transparent = "full",
+        -- transparent = "full",
       })
     end,
   },
 
   -- >>>>>>>>>>>>>>>>>>>>>>>>>>>> UI  <<<<<<<<<<<<<<<<<<<<<<<<<<<< --
+
+  {
+    "zaldih/themery.nvim",
+    lazy = false,
+    config = function(_, opts)
+      require("themery").setup({
+        themeConfigFile = "/home/n16hth4wk/.config/astro/settings/theme.lua",
+        themes = { "astrodark", "catppuccin", "lvim", "onedark", "fluoromachine", "solarized-osaka" },
+      })
+    end,
+  },
 
   {
     "AstroNvim/astroui",

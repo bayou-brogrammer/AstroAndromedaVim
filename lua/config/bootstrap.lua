@@ -1,6 +1,7 @@
 ---@class Andromeda
 _G.Andromeda = {
-  default_colorscheme = "solarized-osaka",
+  default_colorscheme = "",
+  default_dashboard = "doom",
 }
 
 ---@class AndromedaLibConfig

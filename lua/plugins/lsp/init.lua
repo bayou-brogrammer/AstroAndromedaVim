@@ -6,7 +6,7 @@ return {
       codelens = true,
       autoformat = true,
       inlay_hints = true,
-      lsp_handlers = true,
+      lsp_handlers = false, --! This is needed to allow noice to work
       diagnostics_mode = 3,
       semantic_tokens = true,
     },

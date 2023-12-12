@@ -1,3 +1,4 @@
+---@type AndromedaPathLib
 Andromeda.lib.path = {}
 
 ---@class AndromedaPathLib
@@ -37,6 +38,7 @@ end
 ---@param filter? function
 function M.load_dir(dir, filter)
   filter = filter or M.filters.lua
+
   for _, file in ipairs(M.get_files(dir, filter)) do
     require(file:gsub(M.CONFIG_PATH, ""):gsub(".lua", ""))
   end
