@@ -8,23 +8,25 @@ return {
     opts = {
       default_component_configs = {
         indent = { padding = 0 },
+        modified = { symbol = get_icon("FileModified") },
+
         icon = {
           default = get_icon("DefaultFile"),
-          folder_closed = get_icon("FolderClosed"),
-          folder_empty = get_icon("FolderEmpty"),
-          folder_empty_open = get_icon("FolderEmpty"),
           folder_open = get_icon("FolderOpen"),
+          folder_empty = get_icon("FolderEmpty"),
+          folder_closed = get_icon("FolderClosed"),
+          folder_empty_open = get_icon("FolderEmpty"),
         },
-        modified = { symbol = get_icon("FileModified") },
+
         git_status = {
           symbols = {
             added = get_icon("GitAdd"),
-            conflict = get_icon("GitConflict"),
+            staged = get_icon("GitStaged"),
             deleted = get_icon("GitDelete"),
             ignored = get_icon("GitIgnored"),
             modified = get_icon("GitChange"),
             renamed = get_icon("GitRenamed"),
-            staged = get_icon("GitStaged"),
+            conflict = get_icon("GitConflict"),
             unstaged = get_icon("GitUnstaged"),
             untracked = get_icon("GitUntracked"),
           },

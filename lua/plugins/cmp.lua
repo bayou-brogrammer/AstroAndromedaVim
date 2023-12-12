@@ -1,56 +1,50 @@
----@diagnostic disable: undefined-field
-
 return {
   {
     "L3MON4D3/LuaSnip",
-    keys = function() return {} end,
+    lazy = true,
+    dependencies = { "rafamadriz/friendly-snippets" },
+    build = vim.fn.has("win32") == 0
+        and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
+      or nil,
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+      region_check_events = "CursorMoved",
+    },
+    config = function(_, opts)
+      ---@diagnostic disable-next-line: undefined-field
+      if opts then require("luasnip").config.setup(opts) end
+      vim.tbl_map(
+        function(type) require("luasnip.loaders.from_" .. type).lazy_load() end,
+        { "vscode", "snipmate", "lua" }
+      )
+    end,
   },
 
-  -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
+      "hrsh7th/cmp-path",
       "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local maps = opts.mappings
+          maps.n["<Leader>uc"] = {
+            function() require("astrocore.toggles").buffer_cmp() end,
+            desc = "Toggle autocompletion (buffer)",
+          }
+          maps.n["<Leader>uC"] = {
+            function() require("astrocore.toggles").cmp() end,
+            desc = "Toggle autocompletion (global)",
+          }
+        end,
+      },
     },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      -- Insert emoji by typing :<emoji name>:
-      table.insert(opts.sources, { name = "emoji" })
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      })
-    end,
+    opts = Andromeda.configs.cmp,
   },
 }

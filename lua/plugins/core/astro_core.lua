@@ -3,6 +3,8 @@ return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
   opts = {
+    mappings = Andromeda.mappings.astrocore,
+
     -- modify core features of AstroNvim
     features = {
       cmp = true, -- enable completion at start

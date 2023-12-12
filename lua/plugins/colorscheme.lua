@@ -1,25 +1,23 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    opts = {
-      integrations = {
-        sandwich = false,
-        noice = true,
-        mini = true,
-        leap = true,
-        markdown = true,
-        neotest = true,
-        cmp = true,
-        overseer = true,
-        lsp_trouble = true,
-        rainbow_delimiters = true,
+    "NvChad/nvim-colorizer.lua",
+    event = "User AndromedaFile",
+    cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
+    dependencies = {
+      {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local maps = opts.mappings
+          maps.n["<Leader>uz"] = { "<Cmd>ColorizerToggle<CR>", desc = "Toggle color highlight" }
+        end,
       },
     },
+    opts = { user_default_options = { names = false } },
   },
 
   {
     "lvim-tech/lvim-colorscheme",
+    cond = false,
     priority = 100,
     opts = {
       style = "dark", -- dark, darksoft, light
@@ -40,23 +38,72 @@ return {
       },
 
       sidebars = {
-        "dbui",
         "qf",
         "pqf",
+        "dbui",
+        "packer",
         "Outline",
         "terminal",
-        "packer",
         "calendar",
-        "spectre_panel",
-        "ctrlspace",
         "neo-tree",
+        "ctrlspace",
+        "spectre_panel",
       },
     },
   },
 
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    cond = Andromeda.default_colorscheme == "catppuccin",
+    opts = {
+      integrations = {
+        sandwich = false,
+        noice = true,
+        mini = true,
+        leap = true,
+        markdown = true,
+        neotest = true,
+        cmp = true,
+        overseer = true,
+        lsp_trouble = true,
+        rainbow_delimiters = true,
+      },
+    },
+  },
+
+  {
+    -- Theme inspired by Atom
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    cond = Andromeda.default_colorscheme == "onedark",
+    opts = {
+      style = "dark", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+      term_colors = true, -- Change terminal color as per the selected theme style
+      transparent = true, -- Show/hide background
+      ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+      cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+    },
+  },
+
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    priority = 1000,
+    cond = Andromeda.default_colorscheme == "solarized-osaka",
+    init = function() Andromeda.default_colorscheme = "solarized-osaka" end,
+    opts = { transparent = true },
+  },
+
+  -- >>>>>>>>>>>>>>>>>>>>>>>>>>>> UI  <<<<<<<<<<<<<<<<<<<<<<<<<<<< --
+
+  {
     "AstroNvim/astroui",
+    lazy = true,
     ---@type AstroUIOpts
-    opts = { colorscheme = "lvim" },
+    opts = {
+      icons = require("icons"),
+      colorscheme = Andromeda.default_colorscheme,
+    },
   },
 }
