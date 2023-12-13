@@ -35,3 +35,5 @@ Andromeda.echo = function(str, key_return)
 end
 
 require("utilities")
+Andromeda.lib.root.setup()
+Andromeda.lib.format.setup()

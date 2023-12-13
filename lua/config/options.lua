@@ -71,21 +71,19 @@ if vim.fn.has("nvim-0.10") == 1 then opt.smoothscroll = true end
 
 -- Folding
 vim.opt.foldlevel = 99
--- vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+vim.opt.foldtext = "v:lua.Andromeda.lib.ui.foldtext()"
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-  -- vim.opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
-end
+if vim.fn.has("nvim-0.9.0") == 1 then vim.opt.statuscolumn = [[%!v:lua.Andromeda.lib.ui.statuscolumn()]] end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
   vim.opt.foldmethod = "expr"
-  -- vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  vim.opt.foldexpr = "v:lua.Andromeda.lib.ui.foldexpr()"
 else
   vim.opt.foldmethod = "indent"
 end
 
--- vim.o.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
+vim.o.formatexpr = "v:lua.Andromeda.lib.format.formatexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

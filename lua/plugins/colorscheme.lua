@@ -120,7 +120,6 @@ return {
     lazy = true,
     ---@type AstroUIOpts
     opts = {
-      icons = require("icons"),
       colorscheme = "fluoromachine",
     },
   },
