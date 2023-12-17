@@ -1,4 +1,4 @@
-Andromeda.mappings.telescope = function(_, opts)
+return function(_, opts)
   local astro = require("astrocore")
 
   local maps = opts.mappings

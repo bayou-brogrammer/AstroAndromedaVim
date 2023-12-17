@@ -1,13 +1,10 @@
-local cfg = Andromeda.configs.indentscope
+local cfg = require("ui.indentscope_astrocore")
 
 local char = "╎"
 local ignore_buftypes = cfg.ignore_buftypes
 local ignore_filetypes = cfg.ignore_filetypes
 
 return {
-  "echasnovski/mini.indentscope",
-  event = { "BufReadPre", "BufNewFile" },
-
   dependencies = {
     { "AstroNvim/astrocore", opts = cfg.config },
 

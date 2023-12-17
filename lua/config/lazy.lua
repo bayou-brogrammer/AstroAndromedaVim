@@ -2,10 +2,12 @@ local Lazy = {}
 
 local USE_STABLE = false
 local icons = Andromeda.icons
+
 local vim_path = Globals.vim_path
 local data_dir = Globals.data_dir
-local lazy_path = data_dir .. "lazy/lazy.nvim"
 local modules_dir = vim_path .. "/lua/modules"
+local lazy_path = data_dir .. "lazy/lazy.nvim"
+local plugin_dir = modules_dir .. "/plugins/*.lua"
 
 function Lazy:init_lazy()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -22,17 +24,24 @@ function Lazy:load_plugins()
 
   local append_nativertp = function()
     package.path = package.path
-      .. string.format(";%s;%s;", modules_dir .. "/configs/?.lua", modules_dir .. "/configs/?/init.lua")
+      .. string.format(
+        ";%s;%s;%s;",
+        modules_dir .. "/?.lua",
+        modules_dir .. "/?/init.lua",
+        modules_dir .. "/configs/?.lua",
+        modules_dir .. "/configs/?/init.lua"
+      )
   end
 
   local get_plugins_list = function()
     local list = {}
-    local plugins_list = vim.split(vim.fn.glob(modules_dir .. "/plugins/*.lua"), "\n")
+    local plugins_list = vim.split(vim.fn.glob(plugin_dir), "\n")
     for _, f in ipairs(plugins_list) do
       -- aggregate the plugins from `/plugins/*.lua` and `/user/plugins/*.lua` to a plugin list of a certain field for later `require` action.
       -- current fields contains: completion, editor, lang, tool, ui
       list[#list + 1] = f:find(modules_dir) and f:sub(#modules_dir - 6, -1)
     end
+
     return list
   end
 
@@ -41,8 +50,10 @@ function Lazy:load_plugins()
   for _, m in ipairs(get_plugins_list()) do
     -- require modules returned from `get_plugins_list()` function.
     local modules = require(m:sub(0, #m - 4))
+
     if type(modules) == "table" then
       for name, conf in pairs(modules) do
+        if conf.cfg ~= nil then conf = vim.tbl_extend("force", conf, require(conf.cfg)) end
         self.modules[#self.modules + 1] = vim.tbl_extend("force", { name }, conf)
       end
     end
@@ -51,12 +62,6 @@ end
 function Lazy:load_lazy()
   self:init_lazy()
   self:load_plugins()
-
-  local astronvim_spec = {
-    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
-    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
-    { "AstroNvim/astrocommunity", branch = "v4" },
-  }
 
   ---@class LazyConfig
   local lazy_opts = {
@@ -111,11 +116,18 @@ function Lazy:load_lazy()
   }
 
   if Globals.is_mac then lazy_opts.concurrency = 20 end
-  self.modules = vim.tbl_deep_extend("force", self.modules, {})
 
-  Andromeda.debug(self.modules)
-  -- require("lazy")--[[@as Lazy]]
-  --   .setup(self.modules, lazy_opts)
+  local astronvim_modules = {
+    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
+    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
+    { "AstroNvim/astrocommunity", branch = "v4" },
+  }
+
+  -- self.modules = vim.tbl_deep_extend("force", astronvim_modules, self.modules)
+  table.insert(astronvim_modules, self.modules)
+
+  require("lazy")--[[@as Lazy]]
+    .setup(astronvim_modules, lazy_opts)
 end
 
 Lazy:load_lazy()

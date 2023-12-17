@@ -1,7 +1,8 @@
-Andromeda.configs.dashboard = function()
-  local get_icon = function(icon) return Andromeda.icons.get(icon, 1, true) end
-  local function wrap_text(text, icon) return icon .. " " .. text .. " " .. icon end
+---@param icon Icons
+local get_icon = function(icon) return Andromeda.icons.get(icon, 1, true) end
+local function wrap_text(text, icon) return icon .. " " .. text .. " " .. icon end
 
+return function()
   local opts = {
     theme = "doom",
     hide = { statusline = true },
@@ -27,9 +28,14 @@ Andromeda.configs.dashboard = function()
         local stats = require("lazy").stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
         return {
-          wrap_text("Happiness is a state of mind.", get_icon("LazyInit")),
+          wrap_text("Neovim version " .. Andromeda.lib.get_nvim_version(), get_icon("NeoVim")),
           "",
-          wrap_text("Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms", "⚡"),
+          wrap_text("Happiness is a state of mind.", get_icon("Tree")),
+          "",
+          wrap_text(
+            "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+            get_icon("Event")
+          ),
         }
       end,
     },

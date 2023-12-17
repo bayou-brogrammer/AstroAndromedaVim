@@ -1,7 +1,5 @@
----@diagnostic disable: undefined-global
-
----@class AndromedaMappings
-local M = Andromeda.mappings
+---@diagnostic disable: undefined-field
+local M = {}
 
 M.astrocore = {
   -- first key is the mode
@@ -40,6 +38,8 @@ end
 
 M.cmp = function()
   local cmp = require("cmp")
+  local snip_status_ok, luasnip = pcall(require, "luasnip")
+  if not snip_status_ok then return end
 
   local function has_words_before()
     local line, col = (table.unpack)(vim.api.nvim_win_get_cursor(0))
@@ -98,3 +98,5 @@ M.noice = function(_, opts)
     desc = "Redirect Cmdline",
   }
 end
+
+return M

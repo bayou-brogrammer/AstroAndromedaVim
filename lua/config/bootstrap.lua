@@ -4,12 +4,6 @@ _G.Andromeda = {}
 ---@class AndromedaLibConfig
 Andromeda.lib = {}
 
----@class AndromedaConfigs
-Andromeda.configs = {}
-
----@class AndromedaMappings
-Andromeda.mappings = {}
-
 Andromeda.debug = function(...)
   local args = { ... }
   local str = ""

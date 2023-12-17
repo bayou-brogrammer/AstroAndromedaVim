@@ -1,13 +1,4 @@
 return {
-  "folke/noice.nvim",
-  event = { "User AndromedaFile", "VeryLazy" },
-
-  dependencies = {
-    { "MunifTanjim/nui.nvim", lazy = true },
-    { "nvim-tree/nvim-web-devicons", lazy = true },
-    { "AstroNvim/astrocore", opts = Andromeda.mappings.noice },
-  },
-  
   -- stylua: ignore
   keys = {
     { 
