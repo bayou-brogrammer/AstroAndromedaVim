@@ -21,7 +21,7 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
   end,
 }
 
-add_pack("astrocommunity.pack.typescript-all-in-one")
+add_pack("modules.configs.lang.deno")
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Languages <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
