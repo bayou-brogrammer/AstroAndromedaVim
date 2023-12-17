@@ -177,7 +177,7 @@ function M.foldtext()
     ---@diagnostic disable-next-line: cast-local-type
     ret = { { vim.api.nvim_buf_get_lines(0, vim.v.lnum - 1, vim.v.lnum, false)[1], {} } }
   end
-  table.insert(ret, { " " .. require("andromedavim.icons").Dots })
+  table.insert(ret, { " " .. Andromeda.icons.Dots })
 
   if not vim.treesitter.foldtext then return table.concat(vim.tbl_map(function(line) return line[1] end, ret), " ") end
   return ret

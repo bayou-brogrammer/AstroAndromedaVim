@@ -7,7 +7,6 @@ return {
     dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.conform_nvim } },
 
     init = Andromeda.configs["conform_nvim"].init,
-    config = function(_, opts) require("conform").setup(opts) end,
     opts = function()
       ---@class ConformOpts
       local opts = {
@@ -44,5 +43,6 @@ return {
 
       return opts
     end,
+    config = function(_, opts) require("conform").setup(opts) end,
   },
 }

@@ -1,8 +1,5 @@
 ---@class Andromeda
-_G.Andromeda = {
-  default_colorscheme = "",
-  default_dashboard = "doom",
-}
+_G.Andromeda = {}
 
 ---@class AndromedaLibConfig
 Andromeda.lib = {}
@@ -35,5 +32,7 @@ Andromeda.echo = function(str, key_return)
 end
 
 require("utilities")
+require("icons")
+
 Andromeda.lib.root.setup()
 Andromeda.lib.format.setup()

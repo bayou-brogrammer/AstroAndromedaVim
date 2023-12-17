@@ -1,4 +1,9 @@
-local disabled_plugins = { "alpha-nvim", "better-escape.nvim" }
+local disabled_plugins = {
+  "alpha-nvim",
+  "better-escape.nvim",
+  "guess-indent.nvim",
+  "toggleterm.nvim",
+}
 
 local plugins = {}
 for _, plugin in ipairs(disabled_plugins) do

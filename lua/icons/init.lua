@@ -3,8 +3,8 @@
 -- or go here and upload the font file: https://mathew-kurian.github.io/CharacterMap/
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
----@class AndromedaIcons
-return {
+---@enum (key) Icons
+Andromeda.icons = {
   --! General
   ArrowClosed = "",
   ArrowLeft = "",
@@ -117,3 +117,12 @@ return {
   PackagePending = "",
   PackageUninstalled = "󰚌",
 }
+
+--- Get an icon from the AstroNvim internal icons if it is available and return it
+---@param kind Icons The kind of icon in astroui.icons to retrieve
+---@param padding? integer Padding to add to the end of the icon
+---@param no_fallback? boolean Whether or not to disable fallback to text icon
+---@return string icon
+Andromeda.icons.get = function(kind, padding, no_fallback)
+  return require("astroui").get_icon(kind, padding, no_fallback)
+end

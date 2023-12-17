@@ -20,16 +20,6 @@ return {
       format_on_save = { enabled = true, allow_filetypes = {}, ignore_filetypes = {} },
     },
 
-    -- enable servers that you already have installed without mason
-    servers = {},
-
-    -- customize language server configuration options passed to `lspconfig`
-    ---@diagnostic disable: missing-fields
-    config = {},
-
-    -- customize how language servers are attached
-    setup_handlers = {},
-
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {

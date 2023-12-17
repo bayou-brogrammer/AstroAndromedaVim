@@ -25,21 +25,24 @@ end
 ---@return string
 function M.get_filename(path) return path:match("^.+/(.+)$") end
 
----@param dir string
+---@param path string
 ---@param filter? function
 ---@return string[]
-function M.get_files(dir, filter)
-  local files = vim.split(vim.fn.glob(M.CONFIG_PATH .. dir .. "/*"), "\n", { trimempty = true })
+function M.get_files(path, filter)
+  local files = vim.split(vim.fn.glob(path), "\n", { trimempty = true })
   if filter then files = table.filter(files, filter) end
   return files
 end
 
 ---@param dir string
+---@return string[]
+function M.get_lua_files(dir) return M.get_files(M.CONFIG_PATH .. dir .. "/*.lua") end
+
+---@param dir string
 ---@param filter? function
 function M.load_dir(dir, filter)
   filter = filter or M.filters.lua
-
-  for _, file in ipairs(M.get_files(dir, filter)) do
+  for _, file in ipairs(M.get_files(M.CONFIG_PATH .. dir .. "/*", filter)) do
     require(file:gsub(M.CONFIG_PATH, ""):gsub(".lua", ""))
   end
 end
