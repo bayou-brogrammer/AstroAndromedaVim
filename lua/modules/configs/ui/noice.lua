@@ -1,4 +1,6 @@
 return {
+  init = function() vim.g.lsp_handlers_enabled = false end,
+
   -- stylua: ignore
   keys = {
     { 
@@ -11,47 +13,49 @@ return {
       silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
   },
 
-  opts = {
-    presets = {
-      inc_rename = true, -- enables an input dialog for inc-rename.nvim
-      bottom_search = true, -- use a classic bottom cmdline for search
-      command_palette = true, -- position the cmdline and popupmenu together
-      lsp_doc_border = true, -- add a border to hover docs and signature help
-      long_message_to_split = true, -- long messages will be sent to a split
-      cmdline_output_to_split = false, -- send the output of a command you executed in the cmdline to a split
-    },
-
-    lsp = {
-      override = {
-        ["cmp.entry.get_documentation"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  opts = function()
+    return {
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        lsp_doc_border = true, -- add a border to hover docs and signature help
+        long_message_to_split = true, -- long messages will be sent to a split
+        cmdline_output_to_split = false, -- send the output of a command you executed in the cmdline to a split
+        inc_rename = require("astrocore").is_available("inc-rename.nvim"), -- enables an input dialog for inc-rename.nvim
       },
-    },
 
-    commands = {
-      -- options for the message history that you get with `:Noice`
-      all = {
-        filter = {},
-        view = "split",
-        opts = { enter = true, format = "details" },
-      },
-    },
-
-    routes = {
-      {
-        filter = {
-          event = "msg_show",
-          any = {
-            { find = "%d+L, %d+B" },
-            { find = "; after #%d+" },
-            { find = "; before #%d+" },
-          },
+      lsp = {
+        override = {
+          ["cmp.entry.get_documentation"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         },
-        view = "mini",
       },
-    },
-  },
+
+      commands = {
+        -- options for the message history that you get with `:Noice`
+        all = {
+          filter = {},
+          view = "split",
+          opts = { enter = true, format = "details" },
+        },
+      },
+
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after #%d+" },
+              { find = "; before #%d+" },
+            },
+          },
+          view = "mini",
+        },
+      },
+    }
+  end,
 
   config = function(_, opts)
     local focused = true

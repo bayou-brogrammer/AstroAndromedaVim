@@ -20,13 +20,18 @@ ui["echasnovski/mini.indentscope"] = {
 }
 
 ui["folke/noice.nvim"] = {
+  cfg = "ui.noice",
   event = { "User AndromedaFile", "VeryLazy" },
   dependencies = {
     { "MunifTanjim/nui.nvim", lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },
     { "AstroNvim/astrocore", opts = require("mappings").noice },
   },
-  cfg = "ui.noice",
+}
+
+ui["folke/trouble.nvim"] = {
+  cmd = { "TroubleToggle", "Trouble" },
+  cfg = "ui.trouble",
 }
 
 return ui

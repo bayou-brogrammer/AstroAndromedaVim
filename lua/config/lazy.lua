@@ -123,8 +123,8 @@ function Lazy:load_lazy()
     { "AstroNvim/astrocommunity", branch = "v4" },
   }
 
-  -- self.modules = vim.tbl_deep_extend("force", astronvim_modules, self.modules)
   table.insert(astronvim_modules, self.modules)
+  table.insert(astronvim_modules, Andromeda.community_plugins)
 
   require("lazy")--[[@as Lazy]]
     .setup(astronvim_modules, lazy_opts)

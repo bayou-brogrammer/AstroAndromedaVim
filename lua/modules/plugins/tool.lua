@@ -16,4 +16,11 @@ tools["nvim-telescope/telescope.nvim"] = {
   },
 }
 
+tools["kevinhwang91/nvim-bqf"] = {
+  ft = "qf",
+  lazy = true,
+  dependencies = { { "junegunn/fzf", build = ":call fzf#install()" } },
+  opts = { preview = { border = "single", wrap = true, winblend = 0 } },
+}
+
 return tools

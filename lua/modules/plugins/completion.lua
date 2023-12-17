@@ -4,8 +4,8 @@ local cmp_plugins = {}
 
 cmp_plugins["hrsh7th/nvim-cmp"] = {
   event = "InsertEnter",
-  dependencies = { "hrsh7th/cmp-emoji" },
   opts = require("completion.cmp"),
+  dependencies = { "hrsh7th/cmp-emoji" },
 }
 
 cmp_plugins["AstroNvim/astrolsp"] = {
@@ -27,6 +27,21 @@ cmp_plugins["AstroNvim/astrolsp"] = {
 cmp_plugins["stevearc/aerial.nvim"] = {
   event = "User AndromedaFile",
   cfg = "completion.aerial",
+}
+
+cmp_plugins["zbirenbaum/copilot.lua"] = {
+  opts = {
+    suggestion = {
+      keymap = {
+        accept = "<C-l>",
+        accept_word = false,
+        accept_line = false,
+        next = "<C-.>",
+        prev = "<C-,>",
+        dismiss = "<C/>",
+      },
+    },
+  },
 }
 
 return cmp_plugins

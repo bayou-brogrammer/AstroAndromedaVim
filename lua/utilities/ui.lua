@@ -3,7 +3,6 @@ Andromeda.lib.ui = {}
 ---@class AndromedaUILib
 local M = Andromeda.lib.ui
 
----@alias Mark {pos:number[]}
 ---@alias Sign {name:string, text:string, texthl:string, priority:number}
 
 -- Returns a list of regular and extmark signs sorted by priority (low to high)

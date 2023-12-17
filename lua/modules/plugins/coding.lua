@@ -28,15 +28,17 @@ coding_plugins["mfussenegger/nvim-lint"] = {
   cfg = "coding.nvim-lint",
 }
 
-coding_plugins["zbirenbaum/copilot.lua"] = {
-  import = "astrocommunity.completion.copilot-lua",
-  cfg = "coding.copilot",
-}
-
 coding_plugins["echasnovski/mini.comment"] = {
   event = "User AstroFile",
   dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
   cfg = "coding.comment",
 }
+
+coding_plugins["stevearc/aerial.nvim"] = {
+  event = "User AndromedaFile",
+  cfg = "completion.aerial",
+}
+
+coding_plugins["echasnovski/mini.ai"] = { cfg = "coding.mini_ai" }
 
 return coding_plugins

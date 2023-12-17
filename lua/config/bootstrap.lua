@@ -4,6 +4,9 @@ _G.Andromeda = {}
 ---@class AndromedaLibConfig
 Andromeda.lib = {}
 
+---@type table<string, LazySpec>
+Andromeda.community_plugins = {}
+
 Andromeda.debug = function(...)
   local args = { ... }
   local str = ""

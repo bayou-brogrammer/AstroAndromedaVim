@@ -1,36 +1,9 @@
-local langs = {}
+---@diagnostic disable: inject-field
+
+local function add_pack(pack) Andromeda.community_plugins[#Andromeda.community_plugins + 1] = { import = pack } end
+
+--! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Main Lang Plugins <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 local language_plugins = {}
-
-local function add_lsp_deps(treesitter_extension)
-  return {
-    {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, treesitter_extension) end,
-    },
-  }
-end
-
-local function add_server(servers, config, handler)
-  return function(_, opts)
-    Andromeda.lib.extend_list_opt(opts, servers, "servers")
-    opts.config = Andromeda.lib.extend_tbl(opts.config or {}, config or {})
-    opts.handlers = Andromeda.lib.extend_tbl(opts.handlers or {}, handler or {})
-  end
-end
-
-local function add_lang(servers, cfg)
-  if cfg.server_cfg ~= nil then
-    local server_cfg = require(cfg.server_cfg)
-    cfg.config = server_cfg.config or cfg.config
-    cfg.handlers = server_cfg.handlers or cfg.handlers
-  end
-
-  language_plugins[#language_plugins + 1] = {
-    "AstroNvim/astrolsp",
-    opts = add_server(servers, cfg.config, cfg.handler),
-    dependencies = add_lsp_deps(cfg.treesitter),
-  }
-end
 
 language_plugins["nvim-treesitter/nvim-treesitter"] = {
   opts = function(_, opts)
@@ -48,18 +21,86 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
   end,
 }
 
+add_pack("astrocommunity.pack.typescript-all-in-one")
+
+--! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Languages <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+local lsp_utils = Andromeda.lib.lsp
+local add_server = lsp_utils.add_server
+local add_lsp_deps = lsp_utils.add_lsp_deps
+local extend_tbl = Andromeda.lib.extend_tbl
+
+---@type table<string, AndromedaLanguageCfg>
+local langs = {}
+
+---@param servers string[]
+---@param cfg AndromedaLanguageCfg
+local function add_lang(servers, cfg)
+  if cfg.server_cfg ~= nil then
+    local server_cfg = require(cfg.server_cfg)
+    cfg.config = server_cfg.config or cfg.config
+    cfg.handlers = server_cfg.handlers or cfg.handlers
+  end
+
+  local opts = add_server(servers, cfg.config, cfg.handler)
+  local deps = extend_tbl(cfg.dependencies or {}, add_lsp_deps(servers, cfg.treesitter, cfg.none_ls, cfg.formatter))
+  language_plugins[#language_plugins + 1] = { "AstroNvim/astrolsp", dependencies = deps, opts = opts }
+end
+
 langs["ocamllsp"] = {
   treesitter = { "ocaml" },
   config = { ocamllsp = { codelens = { enable = true } } },
+  formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
+  none_ls = function(_, opts)
+    Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.ocamlformat }, "sources")
+  end,
 }
 
-langs["tsserver"] = {
-  treesitter = { "javascript", "typescript", "tsx" },
-  server_cfg = "lang.tsserver",
+langs["nil_ls"] = {
+  treesitter = { "nix" },
+  formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
+  none_ls = function(_, opts)
+    local nls = require("null-ls")
+    Andromeda.lib.extend_list_opt(opts, {
+      nls.builtins.code_actions.statix,
+      nls.builtins.formatting.alejandra,
+      nls.builtins.diagnostics.deadnix,
+    }, "sources")
+  end,
 }
+
+-- langs["tsserver"] = {
+--   server_cfg = "lang.tsserver",
+--   treesitter = { "javascript", "typescript", "tsx" },
+--   none_ls = function(_, opts)
+--     Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.eslint_d }, "sources")
+--   end,
+--   formatter = {
+--     formatters_by_ft = {
+--       ["vue"] = { "prettier" },
+--       ["css"] = { "prettier" },
+--       ["scss"] = { "prettier" },
+--       ["less"] = { "prettier" },
+--       ["html"] = { "prettier" },
+--       ["json"] = { "prettier" },
+--       ["yaml"] = { "prettier" },
+--       ["jsonc"] = { "prettier" },
+--       ["graphql"] = { "prettier" },
+--       ["markdown"] = { "prettier" },
+--       ["javascript"] = { "prettier" },
+--       ["typescript"] = { "prettier" },
+--       ["handlebars"] = { "prettier" },
+--       ["markdown.mdx"] = { "prettier" },
+--       ["javascriptreact"] = { "prettier" },
+--       ["typescriptreact"] = { "prettier" },
+--     },
+--   },
+-- }
+
+--! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 for server, language_cfg in pairs(langs) do
-  add_lang({ server }, language_cfg)
+  add_lang(language_cfg.servers or { server }, language_cfg)
 end
 
 return language_plugins
