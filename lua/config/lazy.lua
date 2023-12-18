@@ -59,7 +59,7 @@ function Lazy:load_plugins()
       for name, conf in pairs(modules) do
         if conf.cfg ~= nil then conf = vim.tbl_extend("force", conf, require(conf.cfg)) end
 
-        if conf.import ~= nil then
+        if conf.import ~= nil or type(conf) == "string" then
           self.modules[#self.modules + 1] = conf
         else
           self.modules[#self.modules + 1] = vim.tbl_extend("force", { name }, conf)

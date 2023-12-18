@@ -23,22 +23,16 @@ coding_plugins["stevearc/conform.nvim"] = {
   cfg = "coding.conform",
 }
 
-coding_plugins["mfussenegger/nvim-lint"] = {
-  event = "User AndromedaFile",
-  cfg = "coding.nvim-lint",
-}
-
+coding_plugins["echasnovski/mini.ai"] = { cfg = "coding.mini_ai" }
 coding_plugins["echasnovski/mini.comment"] = {
   event = "User AstroFile",
   dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
   cfg = "coding.comment",
 }
 
-coding_plugins["stevearc/aerial.nvim"] = {
+coding_plugins["mfussenegger/nvim-lint"] = {
   event = "User AndromedaFile",
-  cfg = "completion.aerial",
+  cfg = "coding.nvim-lint",
 }
-
-coding_plugins["echasnovski/mini.ai"] = { cfg = "coding.mini_ai" }
 
 return coding_plugins

@@ -1,11 +1,11 @@
-local ui = {}
+local ui = {
+  "nvim-lua/plenary.nvim",
+}
 
 ui["AstroNvim/astroui"] = {
   lazy = true,
   ---@type AstroUIOpts
-  opts = {
-    icons = Andromeda.icons,
-  },
+  opts = { icons = Andromeda.icons },
 }
 
 ui["nvimdev/dashboard-nvim"] = {

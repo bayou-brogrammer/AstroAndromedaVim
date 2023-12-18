@@ -19,6 +19,30 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
   end,
 }
 
+-- Show context of the current function
+language_plugins["nvim-treesitter/nvim-treesitter-context"] = {
+  enabled = true,
+  event = "User AndromedaFile",
+  opts = { mode = "cursor", max_lines = 3 },
+  -- keys = {
+  --   {
+  --     "<leader>ut",
+  --     function()
+  --       local Util = require("lazyvim.util")
+  --       local tsc = require("treesitter-context")
+
+  --       tsc.toggle()
+  --       if Util.inject.get_upvalue(tsc.toggle, "enabled") then
+  --         Util.info("Enabled Treesitter Context", { title = "Option" })
+  --       else
+  --         Util.warn("Disabled Treesitter Context", { title = "Option" })
+  --       end
+  --     end,
+  --     desc = "Toggle Treesitter Context",
+  --   },
+  -- },
+}
+
 language_plugins[#language_plugins + 1] = { import = "modules.configs.lang.ts_deno" }
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Languages <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

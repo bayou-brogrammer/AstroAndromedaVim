@@ -1,10 +1,10 @@
 return {
   --! Completion
-  { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.completion.cmp-cmdline" },
   { import = "astrocommunity.editing-support.neogen" },
   { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.chatgpt-nvim" },
-  { "hrsh7th/cmp-cmdline", import = "astrocommunity.completion.cmp-cmdline" },
 
   --! Editing Support
 

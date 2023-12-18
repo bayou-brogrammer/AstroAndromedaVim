@@ -30,18 +30,10 @@ cmp_plugins["stevearc/aerial.nvim"] = {
 }
 
 cmp_plugins["zbirenbaum/copilot.lua"] = {
-  opts = {
-    suggestion = {
-      keymap = {
-        next = "<C-.>",
-        prev = "<C-,>",
-        accept = "<C-l>",
-        dismiss = "<C/>",
-        accept_word = false,
-        accept_line = false,
-      },
-    },
-  },
+  cmd = "Copilot",
+  event = "InsertEnter",
+  build = ":Copilot auth",
+  cfg = "completion.copilot",
 }
 
 return cmp_plugins
