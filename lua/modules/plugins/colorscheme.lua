@@ -56,57 +56,11 @@ colorschemes["catppuccin/nvim"] = {
       lsp_trouble = true,
       rainbow_delimiters = true,
     },
+    dependencies = { { "AstroNvim/astroui", opts = { colorscheme = "fluoromachine" } } },
   },
 }
 
-colorschemes["maxmx03/fluoromachine.nvim"] = {
-  priority = 1000,
-  dependencies = { { "AstroNvim/astroui", opts = { colorscheme = "fluoromachine" } } },
-  config = function()
-    local fm = require("fluoromachine")
-
-    fm.setup({
-      glow = true,
-      theme = "retrowave",
-      -- transparent = "full",
-    })
-  end,
-}
-
---   {
---     "lvim-tech/lvim-colorscheme",
---     priority = 100,
---     opts = {
---       style = "dark", -- dark, darksoft, light
---       -- default = "lvim-gruvbox-dark",
---       -- default = "lvim-catppuccin-dark",
-
---       styles = {
---         variables = {},
---         comments = { italic = true, bold = true },
---         keywords = { italic = true, bold = true },
---         functions = { italic = true, bold = true },
---       },
-
---       colors = {
---         dark = {},
---         light = {},
---         darksoft = {},
---       },
-
---       sidebars = {
---         "qf",
---         "pqf",
---         "dbui",
---         "packer",
---         "Outline",
---         "terminal",
---         "calendar",
---         "neo-tree",
---         "ctrlspace",
---         "spectre_panel",
---       },
---     },
---   },
+colorschemes["maxmx03/fluoromachine.nvim"] = { priority = 1000, cfg = "color.fluoromachine" }
+colorschemes["lvim-tech/lvim-colorscheme"] = { priority = 100, opts = require("color.lvim") }
 
 return colorschemes

@@ -29,9 +29,8 @@ return {
 
   --! Recipes
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
-  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
-  { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
 
   --! Scrolling
   { import = "astrocommunity.scrolling.mini-animate" },

@@ -5,7 +5,9 @@ local ui = {
 ui["AstroNvim/astroui"] = {
   lazy = true,
   ---@type AstroUIOpts
-  opts = { icons = Andromeda.icons },
+  opts = {
+    icons = Andromeda.icons,
+  },
 }
 
 ui["nvimdev/dashboard-nvim"] = {
@@ -33,5 +35,7 @@ ui["folke/trouble.nvim"] = {
   cmd = { "TroubleToggle", "Trouble" },
   cfg = "ui.trouble",
 }
+
+ui["rebelot/heirline.nvim"] = { cfg = "ui.heirline" }
 
 return ui
