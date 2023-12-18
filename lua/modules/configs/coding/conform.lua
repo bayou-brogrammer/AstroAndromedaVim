@@ -1,5 +1,7 @@
 return {
-  dependencies = { { "AstroNvim/astrocore", opts = require("mappings").conform } },
+  dependencies = {
+    { "AstroNvim/astrocore", opts = require("modules.mappings").conform_nvim },
+  },
   init = function()
     -- Install the conform formatter on VeryLazy
     Andromeda.lib.on_very_lazy(function()

@@ -3,7 +3,7 @@ local coding_plugins = {}
 coding_plugins["AstroNvim/astrocore"] = {
   ---@type AstroCoreOpts
   opts = {
-    mappings = require("mappings").astrocore,
+    mappings = require("modules.mappings").astrocore,
 
     -- modify core features of AstroNvim
     features = {
@@ -19,8 +19,8 @@ coding_plugins["AstroNvim/astrocore"] = {
 coding_plugins["stevearc/conform.nvim"] = {
   lazy = true,
   cmd = "ConformInfo",
-  event = { "BufReadPre", "BufNewFile" },
   cfg = "coding.conform",
+  event = { "BufReadPre", "BufNewFile" },
 }
 
 coding_plugins["echasnovski/mini.ai"] = { cfg = "coding.mini_ai" }

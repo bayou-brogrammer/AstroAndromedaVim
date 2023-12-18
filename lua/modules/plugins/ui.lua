@@ -27,7 +27,7 @@ ui["folke/noice.nvim"] = {
   dependencies = {
     { "MunifTanjim/nui.nvim", lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },
-    { "AstroNvim/astrocore", opts = require("mappings").noice },
+    { "AstroNvim/astrocore", opts = require("modules.mappings").noice },
   },
 }
 

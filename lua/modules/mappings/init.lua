@@ -1,4 +1,6 @@
 ---@diagnostic disable: undefined-field
+
+---@class AndromedaMappings
 local M = {}
 
 M.astrocore = {
@@ -29,11 +31,11 @@ M.astrocore = {
 }
 
 M.conform_nvim = function(_, opts)
-  -- local maps = opts.mappings
-  -- maps.n["<leader>cF"] = {
-  --   function() require("conform").format { formatters = { "injected" } } end,
-  --   desc = "Format Injected Langs",
-  -- }
+  local maps = opts.mappings
+  maps.n["<leader>cF"] = {
+    function() require("conform").format({ formatters = { "injected" } }) end,
+    desc = "Format Injected Langs",
+  }
 end
 
 M.cmp = function()

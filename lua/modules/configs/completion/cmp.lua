@@ -10,6 +10,6 @@ return function()
       { name = "emoji" },
     }),
 
-    mapping = cmp.mapping.preset.insert(require("mappings").cmp()),
+    mapping = cmp.mapping.preset.insert(require("modules.mappings").cmp()),
   }
 end
