@@ -20,7 +20,11 @@ function Lazy:init_lazy()
 end
 
 function Lazy:load_plugins()
-  self.modules = {}
+  self.modules = {
+    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
+    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
+    { "AstroNvim/astrocommunity", branch = "v4" },
+  }
 
   local append_nativertp = function()
     package.path = package.path
@@ -54,7 +58,12 @@ function Lazy:load_plugins()
     if type(modules) == "table" then
       for name, conf in pairs(modules) do
         if conf.cfg ~= nil then conf = vim.tbl_extend("force", conf, require(conf.cfg)) end
-        self.modules[#self.modules + 1] = vim.tbl_extend("force", { name }, conf)
+
+        if conf.import ~= nil then
+          self.modules[#self.modules + 1] = conf
+        else
+          self.modules[#self.modules + 1] = vim.tbl_extend("force", { name }, conf)
+        end
       end
     end
   end
@@ -117,17 +126,8 @@ function Lazy:load_lazy()
 
   if Globals.is_mac then lazy_opts.concurrency = 20 end
 
-  local astronvim_modules = {
-    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
-    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
-    { "AstroNvim/astrocommunity", branch = "v4" },
-  }
-
-  table.insert(astronvim_modules, self.modules)
-  table.insert(astronvim_modules, Andromeda.community_plugins)
-
   require("lazy")--[[@as Lazy]]
-    .setup(astronvim_modules, lazy_opts)
+    .setup(self.modules, lazy_opts)
 end
 
 Lazy:load_lazy()

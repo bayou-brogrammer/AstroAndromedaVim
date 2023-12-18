@@ -1,7 +1,5 @@
 ---@diagnostic disable: inject-field
 
-local function add_pack(pack) Andromeda.community_plugins[#Andromeda.community_plugins + 1] = { import = pack } end
-
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Main Lang Plugins <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 local language_plugins = {}
 
@@ -21,7 +19,7 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
   end,
 }
 
-add_pack("modules.configs.lang.deno")
+language_plugins[#language_plugins + 1] = { import = "modules.configs.lang.ts_deno" }
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Languages <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -68,34 +66,6 @@ langs["nil_ls"] = {
     }, "sources")
   end,
 }
-
--- langs["tsserver"] = {
---   server_cfg = "lang.tsserver",
---   treesitter = { "javascript", "typescript", "tsx" },
---   none_ls = function(_, opts)
---     Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.eslint_d }, "sources")
---   end,
---   formatter = {
---     formatters_by_ft = {
---       ["vue"] = { "prettier" },
---       ["css"] = { "prettier" },
---       ["scss"] = { "prettier" },
---       ["less"] = { "prettier" },
---       ["html"] = { "prettier" },
---       ["json"] = { "prettier" },
---       ["yaml"] = { "prettier" },
---       ["jsonc"] = { "prettier" },
---       ["graphql"] = { "prettier" },
---       ["markdown"] = { "prettier" },
---       ["javascript"] = { "prettier" },
---       ["typescript"] = { "prettier" },
---       ["handlebars"] = { "prettier" },
---       ["markdown.mdx"] = { "prettier" },
---       ["javascriptreact"] = { "prettier" },
---       ["typescriptreact"] = { "prettier" },
---     },
---   },
--- }
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

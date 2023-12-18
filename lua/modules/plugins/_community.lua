@@ -1,4 +1,4 @@
-Andromeda.community_plugins = {
+return {
   --! Completion
   { import = "astrocommunity.completion.copilot-lua" },
   { import = "astrocommunity.editing-support.neogen" },
