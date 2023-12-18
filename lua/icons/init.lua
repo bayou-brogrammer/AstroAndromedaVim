@@ -36,6 +36,7 @@ Andromeda.icons = {
   Spellcheck = "󰓆",
   Tab = "󰓩",
   TabClose = "󰅙",
+  Telescope = "",
   Terminal = "",
   Tree = "",
   Window = "",
