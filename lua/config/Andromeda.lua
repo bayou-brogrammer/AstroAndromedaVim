@@ -1,5 +1,8 @@
 ---@class Andromeda
-_G.Andromeda = {}
+Andromeda = {}
+
+---@class AndromedaIcons
+Andromeda.icons = {}
 
 ---@class AndromedaLibConfig
 Andromeda.lib = {}
@@ -13,8 +16,7 @@ Andromeda.debug = function(...)
     if i ~= #args then str = str .. ", " end
   end
 
-  vim.api.nvim_echo({ { str } }, true, {})
-  vim.fn.getchar()
+  Andromeda.echo(str, true)
 end
 
 ---@param str string
@@ -25,8 +27,6 @@ Andromeda.echo = function(str, key_return)
   if key_return then vim.fn.getchar() end
 end
 
-require("utilities")
-require("icons")
-
-Andromeda.lib.root.setup()
-Andromeda.lib.format.setup()
+for _, module in ipairs({ "utilities", "icons" }) do
+  require(module)
+end
