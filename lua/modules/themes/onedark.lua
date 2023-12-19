@@ -1,4 +1,4 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 
 local function set_colorscheme(sty)
   local have_current = false
@@ -10,16 +10,19 @@ local function set_colorscheme(sty)
   if have_current then
     require("current-theme")
   else
+    local theme = ""
     if sty == "onedark_vivid" then
-      vim.cmd([[colorscheme onedark_vivid]])
+      theme = "onedark_vivid"
     elseif sty == "onedark_dark" then
-      vim.cmd([[colorscheme onedark_dark]])
+      theme = "onedark_dark"
     elseif sty == "onelight" then
       vim.opt.background = "light"
-      vim.cmd([[colorscheme onelight]])
+      theme = "onelight"
     else
-      vim.cmd([[colorscheme onedark]])
+      theme = "onedark"
     end
+
+    Andromeda.settings.utils.set_colorscheme(theme)
   end
 end
 
@@ -107,7 +110,7 @@ return {
   },
 
   config = function(_, opts)
-    settings.utils.activate_colorscheme("fluoromachine", function()
+    settings.utils.activate_colorscheme("onedarkpro", function()
       require("onedarkpro").setup(opts)
 
       vim.opt.background = "dark"

@@ -7,6 +7,9 @@ Andromeda.icons = {}
 ---@class AndromedaLibConfig
 Andromeda.lib = {}
 
+---@class AndromedaSettings
+Andromeda.settings = {}
+
 Andromeda.debug = function(...)
   local args = { ... }
   local str = ""
@@ -27,6 +30,6 @@ Andromeda.echo = function(str, key_return)
   if key_return then vim.fn.getchar() end
 end
 
-for _, module in ipairs({ "utilities", "icons" }) do
+for _, module in ipairs({ "utilities", "icons", "configuration" }) do
   require(module)
 end

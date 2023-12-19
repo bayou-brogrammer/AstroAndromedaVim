@@ -1,12 +1,18 @@
-local conf = {}
+---@type AndromedaSettingsUtils
+Andromeda.settings.utils = {}
+
+---@class AndromedaSettingsUtils
+local conf = Andromeda.settings.utils
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>> CONF SETTINGS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< --
 ---@param theme string
-conf.is_theme_active = function(theme) return conf.enabled_themes[theme] ~= nil and theme == conf.theme end
+conf.is_theme_active = function(theme)
+  return Andromeda.settings.enabled_themes[theme] ~= nil and theme == Andromeda.settings.theme
+end
 
 ---@param theme string
 conf.set_colorscheme = function(theme)
-  Andromeda.lib.try(vim.cmd.colorscheme(theme), {
+  Andromeda.lib.try(function() vim.cmd.colorscheme(theme) end, {
     on_error = function()
       vim.notify(("Error setting up colorscheme: `%s`"):format(theme), vim.log.levels.ERROR, { title = "AstroUI" })
     end,
@@ -17,8 +23,8 @@ end
 ---@param setup_fn function
 ---@param activate_theme? boolean
 conf.activate_colorscheme = function(scheme, setup_fn, activate_theme)
-  if conf.theme == scheme then
-    local colorscheme = scheme or conf.theme
+  if Andromeda.settings.theme == scheme then
+    local colorscheme = scheme or Andromeda.settings.theme
     activate_theme = activate_theme or conf.is_theme_active(colorscheme) or false
 
     Andromeda.lib.try(function()

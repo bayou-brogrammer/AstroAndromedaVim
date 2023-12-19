@@ -4,7 +4,7 @@ local function req(module)
 end
 
 for _, module in ipairs({ "global", "Andromeda", "lazy", "polish" }) do
-  req("config." .. module)
+  req("core." .. module)
 end
 
 Andromeda.lib.root.setup()

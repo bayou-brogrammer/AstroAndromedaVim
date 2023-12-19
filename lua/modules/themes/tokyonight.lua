@@ -1,4 +1,4 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 
 local function set_colorscheme(sty)
   local have_current = false
@@ -7,21 +7,27 @@ local function set_colorscheme(sty)
     if theme_ok then have_current = true end
   end
 
+  local set_theme = function(theme) Andromeda.settings.utils.set_colorscheme(theme) end
+
   if have_current then
     require("current-theme")
   else
+    local theme = ""
+
     if sty == "night" then
-      vim.cmd([[colorscheme tokyonight-night]])
+      theme = "tokyonight-night"
     elseif sty == "moon" then
-      vim.cmd([[colorscheme tokyonight-moon]])
+      theme = "tokyonight-moon"
     elseif sty == "storm" then
-      vim.cmd([[colorscheme tokyonight-storm]])
+      theme = "tokyonight-storm"
     elseif sty == "day" then
       vim.opt.background = "light"
-      vim.cmd([[colorscheme tokyonight-day]])
+      theme = "tokyonight-day"
     else
-      vim.cmd([[colorscheme tokyonight]])
+      theme = "tokyonight"
     end
+
+    Andromeda.settings.utils.set_colorscheme(theme)
   end
 end
 
@@ -74,19 +80,20 @@ return {
       "spectre_panel",
     },
   },
-
   config = function()
-    if settings.theme == "tokyonight" then
+    settings.utils.activate_colorscheme("tokyonight", function()
       vim.opt.background = "dark"
-
       set_colorscheme(settings.theme_style)
-      vim.api.nvim_set_hl(0, "MiniJump", { fg = "#FFFFFF", bg = "#ff00a0" })
 
+      vim.api.nvim_set_hl(0, "MiniJump", { fg = "#FFFFFF", bg = "#ff00a0" })
       vim.g.tokyonight_transparent = require("tokyonight.config").options.transparent
-      require("util").map("n", "<leader>ut", function()
+
+      Andromeda.lib.map("n", "<leader>ut", function()
         vim.g.tokyonight_transparent = not vim.g.tokyonight_transparent
+
         local sidebar = "dark"
         if vim.g.tokyonight_transparent then sidebar = "transparent" end
+
         require("tokyonight").setup({
           transparent = vim.g.tokyonight_transparent,
           styles = {
@@ -98,8 +105,9 @@ return {
             floats = "dark",
           },
         })
-        set_colorscheme(style)
+
+        set_colorscheme(settings.theme_style)
       end, { desc = "Toggle Transparency" })
-    end
+    end)
   end,
 }

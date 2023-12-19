@@ -1,4 +1,4 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 local themes = { "delta", "retrowave", "default" } -- delta, retrowave, default
 local theme = table.find(themes, settings.theme_style) or "retrowave"
 
@@ -17,12 +17,14 @@ return {
   config = function()
     settings.utils.activate_colorscheme(
       "fluoromachine",
-      require("fluoromachine").setup({
-        glow = true,
-        theme = theme,
-        overrides = overrides,
-        transparent = settings.enable_transparent,
-      })
+      function()
+        require("fluoromachine").setup({
+          glow = true,
+          theme = theme,
+          overrides = overrides,
+          transparent = settings.enable_transparent,
+        })
+      end
     )
   end,
 }

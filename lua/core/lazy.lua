@@ -81,7 +81,7 @@ function Lazy:load_lazy()
     checker = { enabled = true },
     change_detection = { enabled = true },
     defaults = { lazy = true, version = false },
-    install = { missing = true, colorscheme = require("configuration").enabled_themes },
+    install = { missing = true, colorscheme = Andromeda.settings.enabled_themes },
 
     dev = {
       path = "",

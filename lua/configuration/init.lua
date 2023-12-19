@@ -1,7 +1,6 @@
----@class AndromedaConfig
-local conf = {}
-
-conf.utils = require("configuration-utils")
+---@class AndromedaSettings
+local conf = Andromeda.settings
+conf.utils = require("configuration.utils")
 
 -- THEME CONFIGURATION
 -- Available themes:
@@ -18,8 +17,7 @@ conf.enabled_themes = {
   "solarized-osaka",
   "lvim-colorscheme",
 }
-
-conf.theme = "fluoromachine"
+conf.theme = "tokyonight"
 -- Available styles are:
 --   kanagawa:    wave, dragon, lotus
 --   tokyonight:  night, storm, day, moon
@@ -29,7 +27,7 @@ conf.theme = "fluoromachine"
 --   onedarkpro:  onedark, onelight, onedark_vivid, onedark_dark
 --   monokai-pro: classic, octagon, pro, machine, ristretto, spectrum
 --   nightfox:    carbonfox, dawnfox, dayfox, duskfox, nightfox, nordfox, terafox
-conf.theme_style = "retrowave"
+conf.theme_style = "moon"
 -- enable transparency if the theme supports it
 conf.enable_transparent = true
 

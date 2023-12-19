@@ -1,5 +1,3 @@
-local settings = require("configuration")
-
 return {
   dependencies = {
     {
@@ -45,6 +43,6 @@ return {
     },
   },
   config = function(_, opts)
-    settings.utils.activate_colorscheme("catppuccin", function() require("catppuccin").setup(opts) end, true)
+    Andromeda.settings.utils.activate_colorscheme("catppuccin", function() require("catppuccin").setup(opts) end, true)
   end,
 }

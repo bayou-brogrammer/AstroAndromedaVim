@@ -10,7 +10,6 @@ cmp_plugins["hrsh7th/nvim-cmp"] = {
 
 cmp_plugins["AstroNvim/astrolsp"] = {
   "AstroNvim/astrolsp",
-  opts = require("completion.lsp"),
   dependencies = {
     { "williamboman/mason.nvim", opts = mason_cfg.mason },
     { "jay-babu/mason-null-ls.nvim", opts = mason_cfg["mason-null-ls"] },

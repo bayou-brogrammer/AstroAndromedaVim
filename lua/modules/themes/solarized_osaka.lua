@@ -1,4 +1,4 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 
 return {
   opts = { transparent = settings.enable_transparent },

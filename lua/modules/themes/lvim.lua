@@ -1,4 +1,4 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 
 return {
   style = settings.theme_style, -- dark, darksoft, light

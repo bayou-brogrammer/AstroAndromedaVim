@@ -1,15 +1,15 @@
-local settings = require("configuration")
+local settings = Andromeda.settings
 
 local colorschemes = {}
 local active_theme = settings.theme
 local enabled_themes = settings.enabled_themes
 
-colorschemes["lvim-tech/lvim-colorscheme"] = { cfg = "color.lvim" }
-colorschemes["olimorris/onedarkpro.nvim"] = { cfg = "color.onedark" }
-colorschemes["maxmx03/fluoromachine.nvim"] = { cfg = "color.fluoromachine" }
-colorschemes["craftzdog/solarized-osaka.nvim"] = { cfg = "color.solarized_osaka" }
-colorschemes["catppuccin/nvim"] = { name = "catppuccin", cfg = "color.catppuccin" }
-colorschemes["folke/tokyonight.nvim"] = { branch = "main", cfg = "color.tokyonight" }
+colorschemes["lvim-tech/lvim-colorscheme"] = { cfg = "themes.lvim" }
+colorschemes["olimorris/onedarkpro.nvim"] = { cfg = "themes.onedark" }
+colorschemes["maxmx03/fluoromachine.nvim"] = { cfg = "themes.fluoromachine" }
+colorschemes["craftzdog/solarized-osaka.nvim"] = { cfg = "themes.solarized_osaka" }
+colorschemes["catppuccin/nvim"] = { name = "catppuccin", cfg = "themes.catppuccin" }
+colorschemes["folke/tokyonight.nvim"] = { branch = "main", cfg = "themes.tokyonight" }
 
 colorschemes = table.map(colorschemes, function(theme, theme_name)
   local theme_key = theme.name or Andromeda.lib.path.get_filename(theme_name)
