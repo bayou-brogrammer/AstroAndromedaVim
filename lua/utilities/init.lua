@@ -21,13 +21,6 @@ for _, util in ipairs(utils) do
 end
 -- >>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<< --
 
-M.get_nvim_version = function()
-  local version = vim.version()
-  local is_prerelease = version.api_prerelease or false
-  local prerelease = is_prerelease and "-" .. version.prerelease or ""
-  return version.major .. "." .. version.minor .. "." .. version.patch .. prerelease
-end
-
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 
 ---@param plugin string

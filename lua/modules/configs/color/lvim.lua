@@ -1,7 +1,7 @@
+local settings = require("configuration")
+
 return {
-  style = "dark", -- dark, darksoft, light
-  -- default = "lvim-gruvbox-dark",
-  -- default = "lvim-catppuccin-dark",
+  style = settings.theme_style, -- dark, darksoft, light
 
   styles = {
     variables = {},
@@ -28,4 +28,8 @@ return {
     "ctrlspace",
     "spectre_panel",
   },
+
+  config = function(_, opts)
+    settings.utils.activate_colorscheme("lvim", function() require("lvim").setup(opts) end, true)
+  end,
 }

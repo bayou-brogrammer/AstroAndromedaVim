@@ -12,7 +12,9 @@ Andromeda.icons = {
   ArrowRight = "",
   Bookmarks = "",
   BufferClose = "󰅖",
+  Calendar = "",
   Check = "",
+  Clock = "",
   Circle = " ",
   Dots = "󰇘",
   Ellipsis = "…",
@@ -123,8 +125,11 @@ Andromeda.icons = {
 --- Get an icon from the AstroNvim internal icons if it is available and return it
 ---@param kind Icons The kind of icon in astroui.icons to retrieve
 ---@param padding? integer Padding to add to the end of the icon
----@param no_fallback? boolean Whether or not to disable fallback to text icon
+---@param wrap_icon? boolean Whether or not to disable fallback to text icon
 ---@return string icon
-Andromeda.icons.get = function(kind, padding, no_fallback)
-  return require("astroui").get_icon(kind, padding, no_fallback)
+Andromeda.icons.get = function(kind, padding, wrap_icon)
+  wrap_icon = wrap_icon or false
+  local icon = require("astroui").get_icon(kind, padding, true)
+  if icon ~= "" and wrap_icon then return (" "):rep(padding or 0) .. icon end
+  return icon
 end

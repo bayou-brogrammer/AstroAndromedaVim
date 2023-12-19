@@ -1,20 +1,28 @@
+local settings = require("configuration")
+local themes = { "delta", "retrowave", "default" } -- delta, retrowave, default
+local theme = table.find(themes, settings.theme_style) or "retrowave"
+
+local function overrides(c)
+  return {
+    TelescopePreviewNormal = { bg = c.bg },
+    TelescopePromptPrefix = { fg = c.purple },
+    TelescopeResultsNormal = { bg = c.alt_bg },
+    TelescopeTitle = { fg = c.fg, bg = c.comment },
+    TelescopePromptBorder = { fg = c.alt_bg, bg = c.alt_bg },
+    TelescopeResultsBorder = { fg = c.alt_bg, bg = c.alt_bg },
+  }
+end
+
 return {
-  dependencies = {
-    {
-      "AstroNvim/astroui",
-      opts = {
-        colorscheme = "fluoromachine",
-      },
-    },
-  },
-
   config = function()
-    local fm = require("fluoromachine")
-
-    fm.setup({
-      glow = true,
-      transparent = true,
-      theme = "retrowave", -- delta, retrowave, default
-    })
+    settings.utils.activate_colorscheme(
+      "fluoromachine",
+      require("fluoromachine").setup({
+        glow = true,
+        theme = theme,
+        overrides = overrides,
+        transparent = settings.enable_transparent,
+      })
+    )
   end,
 }

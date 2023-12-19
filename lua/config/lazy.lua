@@ -22,24 +22,18 @@ function Lazy:init_lazy()
   vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 end
 
+function Lazy:append_nativertp()
+  package.path = package.path
+    .. string.format(
+      ";%s;%s;%s;",
+      modules_dir .. "/?.lua",
+      modules_dir .. "/?/init.lua",
+      modules_dir .. "/configs/?.lua",
+      modules_dir .. "/configs/?/init.lua"
+    )
+end
+
 function Lazy:load_plugins()
-  self.modules = {
-    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
-    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
-    { "AstroNvim/astrocommunity", branch = "v4" },
-  }
-
-  local append_nativertp = function()
-    package.path = package.path
-      .. string.format(
-        ";%s;%s;%s;",
-        modules_dir .. "/?.lua",
-        modules_dir .. "/?/init.lua",
-        modules_dir .. "/configs/?.lua",
-        modules_dir .. "/configs/?/init.lua"
-      )
-  end
-
   local get_plugins_list = function()
     local list = {}
     local plugins_list = vim.split(vim.fn.glob(plugin_dir), "\n")
@@ -52,7 +46,13 @@ function Lazy:load_plugins()
     return list
   end
 
-  append_nativertp()
+  Lazy:append_nativertp()
+
+  self.modules = {
+    { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
+    { "AstroNvim/AstroNvim", branch = "v4", version = USE_STABLE and "^4" or nil, import = "astronvim.plugins" },
+    { "AstroNvim/astrocommunity", branch = "v4" },
+  }
 
   for _, m in ipairs(get_plugins_list()) do
     -- require modules returned from `get_plugins_list()` function.
@@ -71,6 +71,7 @@ function Lazy:load_plugins()
     end
   end
 end
+
 function Lazy:load_lazy()
   self:init_lazy()
   self:load_plugins()
@@ -80,7 +81,7 @@ function Lazy:load_lazy()
     checker = { enabled = true },
     change_detection = { enabled = true },
     defaults = { lazy = true, version = false },
-    install = { missing = true, colorscheme = { "onedark", "astrodark", "catppuccin-mocha", "solarized-osaka" } },
+    install = { missing = true, colorscheme = require("configuration").enabled_themes },
 
     dev = {
       path = "",
