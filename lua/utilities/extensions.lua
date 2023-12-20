@@ -38,3 +38,8 @@ table.find = function(table, value)
     end
   end
 end
+
+--! Strings
+
+function string:is_empty() return self == nil or self == "" end
+function string:is_not_empty() return not self:is_empty() end

@@ -34,15 +34,25 @@ return {
 
     return {
       defaults = {
-        path_display = { "truncate" },
+        -- results_title = true,
+        color_devicons = true,
+        initial_mode = "insert",
+        scroll_strategy = "limit",
+        selection_strategy = "reset",
+        path_display = { "absolute" },
         sorting_strategy = "ascending",
+        -- layout_strategy = "horizontal",
 
         prompt_prefix = Andromeda.icons.get("Telescope", 2),
         selection_caret = Andromeda.icons.get("Selected", 1),
 
-        file_sorter = require("telescope.sorters").get_fuzzy_file,
         git_worktrees = require("astrocore").config.git_worktrees,
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 
         layout_config = {
           width = 0.85,
@@ -69,6 +79,17 @@ return {
           "--line-number",
           "--column",
           "--smart-case",
+        },
+
+        file_ignore_patterns = {
+          ".git/",
+          ".cache",
+          "build/",
+          "%.class",
+          "%.pdf",
+          "%.mkv",
+          "%.mp4",
+          "%.zip",
         },
       },
 

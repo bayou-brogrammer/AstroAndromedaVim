@@ -23,7 +23,7 @@ end)
 
 return Andromeda.lib.extend_tbl({
   ["NvChad/nvim-colorizer.lua"] = {
-    event = "User AndromedaFile",
+    event = "User AstroFile",
     opts = { user_default_options = { names = false } },
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     dependencies = {

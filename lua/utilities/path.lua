@@ -51,3 +51,5 @@ function M.load_dir(dir, filter)
     require(file:gsub(M.CONFIG_PATH, ""):gsub(".lua", ""))
   end
 end
+
+return M

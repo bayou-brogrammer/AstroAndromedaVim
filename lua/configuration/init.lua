@@ -31,6 +31,19 @@ conf.theme_style = "moon"
 -- enable transparency if the theme supports it
 conf.enable_transparent = true
 
+-- GLOBAL OPTIONS CONFIGURATION
+-- Some prefer space as the map leader, but why
+conf.mapleader = " "
+conf.maplocalleader = ","
+-- set numbered lines
+conf.number = true
+-- set relative numbered lines
+conf.relative_number = true
+-- always show tabs; 0 never, 1 only if at least two tab pages, 2 always
+conf.showtabline = 2
+-- use rg instead of grep
+conf.grepprg = "rg --hidden --vimgrep --smart-case --"
+
 -- ENABLE/DISABLE/SELECT PLUGINS
 --
 -- AI coding assistants - ChatGPT, Code Explain, Codeium, Copilot, NeoAI

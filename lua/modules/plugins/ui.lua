@@ -15,7 +15,7 @@ ui["echasnovski/mini.indentscope"] = {
 
 ui["folke/noice.nvim"] = {
   cfg = "ui.noice",
-  event = { "User AndromedaFile", "VeryLazy" },
+  event = { "User AstroFile", "VeryLazy" },
   dependencies = {
     { "MunifTanjim/nui.nvim", lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -24,10 +24,12 @@ ui["folke/noice.nvim"] = {
 }
 
 ui["folke/trouble.nvim"] = {
-  cmd = { "TroubleToggle", "Trouble" },
   cfg = "ui.trouble",
+  cmd = { "TroubleToggle", "Trouble" },
 }
 
-ui["rebelot/heirline.nvim"] = { cfg = "ui.heirline" }
+ui["rebelot/heirline.nvim"] = {
+  cfg = "ui.heirline",
+}
 
 return ui

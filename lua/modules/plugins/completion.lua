@@ -2,12 +2,6 @@ local mason_cfg = require("completion.mason")
 
 local cmp_plugins = {}
 
-cmp_plugins["hrsh7th/nvim-cmp"] = {
-  event = "InsertEnter",
-  opts = require("completion.cmp"),
-  dependencies = { "hrsh7th/cmp-emoji" },
-}
-
 cmp_plugins["AstroNvim/astrolsp"] = {
   "AstroNvim/astrolsp",
   dependencies = {
@@ -18,8 +12,14 @@ cmp_plugins["AstroNvim/astrolsp"] = {
   },
 }
 
+cmp_plugins["hrsh7th/nvim-cmp"] = {
+  event = "InsertEnter",
+  opts = require("completion.cmp"),
+  dependencies = { "hrsh7th/cmp-emoji" },
+}
+
 cmp_plugins["stevearc/aerial.nvim"] = {
-  event = "User AndromedaFile",
+  event = "User AstroFile",
   cfg = "completion.aerial",
 }
 

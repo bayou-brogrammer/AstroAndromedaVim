@@ -3,8 +3,7 @@
 local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-
-    t[k] = Andromeda.lib[k]
+    t[k] = require("utilities." .. k)
     return t[k]
   end,
 })

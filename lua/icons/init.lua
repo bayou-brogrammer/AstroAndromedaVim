@@ -133,3 +133,9 @@ Andromeda.icons.get = function(kind, padding, wrap_icon)
   if icon ~= "" and wrap_icon then return (" "):rep(padding or 0) .. icon end
   return icon
 end
+
+--- Get an icon from the AstroNvim internal icons if it is available and return it
+---@param kind Icons The kind of icon in astroui.icons to retrieve
+---@param padding? integer Padding to add to the end of the icon
+---@return string icon
+Andromeda.icons.get_wrapped = function(kind, padding) return Andromeda.icons.get(kind, padding, true) end
