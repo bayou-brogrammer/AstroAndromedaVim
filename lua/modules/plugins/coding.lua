@@ -21,4 +21,23 @@ coding_plugins["echasnovski/mini.comment"] = {
   cfg = "coding.comment",
 }
 
+coding_plugins["folke/neodev.nvim"] = {
+  version = false,
+  event = "VeryLazy",
+  dependencies = { "hrsh7th/nvim-cmp" },
+  opts = {},
+  config = function()
+    require("neodev").setup({
+      library = { plugins = { "nvim-dap-ui" }, types = true },
+      override = function(root_dir, library)
+        local util = require("neodev.util")
+        if util.has_file(root_dir, "/etc/nixos") or util.has_file(root_dir, "nvim-config") then
+          library.enabled = true
+          library.plugins = true
+        end
+      end,
+    })
+  end,
+}
+
 return coding_plugins

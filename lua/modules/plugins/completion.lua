@@ -4,8 +4,10 @@ local cmp_plugins = {}
 
 cmp_plugins["AstroNvim/astrolsp"] = {
   "AstroNvim/astrolsp",
+  cfg = "completion.lsp",
   dependencies = {
-    { "williamboman/mason.nvim", opts = mason_cfg.mason },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "williamboman/mason.nvim", opts = mason_cfg["mason"] },
     { "jay-babu/mason-null-ls.nvim", opts = mason_cfg["mason-null-ls"] },
     { "jay-babu/mason-nvim-dap.nvim", opts = mason_cfg["mason-nvim-dap"] },
     { "williamboman/mason-lspconfig.nvim", opts = mason_cfg["mason-lspconfig"] },

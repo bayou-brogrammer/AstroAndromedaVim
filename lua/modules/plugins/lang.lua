@@ -39,6 +39,47 @@ language_plugins[#language_plugins + 1] = { import = "modules.configs.lang.ts_de
 ---@type table<string, AndromedaLanguageCfg>
 local langs = {}
 
+langs["lua_ls"] = {
+  treesitter = { "lua" },
+  config = {
+    lua_ls = {
+      -- before_init = require("neodev.lsp").before_init,
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            globals = {
+              "vim",
+              "describe",
+              "it",
+              "before_each",
+              "after_each",
+              "pending",
+              "nnoremap",
+              "vnoremap",
+              "inoremap",
+              "tnoremap",
+            },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    },
+  },
+  formatter = { formatters_by_ft = { lua = { "stylua" } } },
+  none_ls = function(_, opts)
+    Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.stylua }, "sources")
+  end,
+}
+
 langs["ocamllsp"] = {
   treesitter = { "ocaml" },
   config = { ocamllsp = { codelens = { enable = true } } },

@@ -42,7 +42,7 @@ return Andromeda.lib.extend_tbl({
     config = function(_, opts)
       require("themery").setup({
         themeConfigFile = "/home/n16hth4wk/.config/nvim/settings/theme.lua",
-        themes = { "astrodark", "catppuccin", "lvim", "onedarkpro", "fluoromachine", "solarized-osaka" },
+        themes = settings.enabled_themes,
       })
     end,
   },

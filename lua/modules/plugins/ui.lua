@@ -32,4 +32,14 @@ ui["rebelot/heirline.nvim"] = {
   cfg = "ui.heirline",
 }
 
+ui["doctorfree/cheatsheet.nvim"] = {
+  event = "VeryLazy",
+  cfg = "ui.cheatsheet",
+  dependencies = {
+    { "nvim-telescope/telescope.nvim" },
+    { "nvim-lua/popup.nvim" },
+    { "nvim-lua/plenary.nvim" },
+  },
+}
+
 return ui

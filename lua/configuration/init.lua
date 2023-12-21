@@ -11,11 +11,9 @@ conf.utils = require("configuration.utils")
 conf.enabled_themes = {
   "astrodark",
   "tokyonight",
-  "onedarkpro",
   "catppuccin",
   "fluoromachine",
   "solarized-osaka",
-  "lvim-colorscheme",
 }
 conf.theme = "tokyonight"
 -- Available styles are:
