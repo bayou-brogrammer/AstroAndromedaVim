@@ -2,25 +2,11 @@
 ---@field path AndromedaPathLib
 local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
-    if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
+    -- if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
     t[k] = require("utilities." .. k)
     return t[k]
   end,
 })
-
--- >>>>>>>>>>>>>> Load Utilities <<<<<<<<<<<<<< --
-local utils = {
-  "extensions",
-  "format",
-  "lsp",
-  "path",
-  "root",
-  "telescope",
-}
-for _, util in ipairs(utils) do
-  require("utilities." .. util)
-end
--- >>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<< --
 
 --! Boolean Methods
 

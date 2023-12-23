@@ -2,12 +2,10 @@ local settings = Andromeda.settings
 
 local function set_colorscheme(sty)
   local have_current = false
-  if settings.enable_telescope_themes then
+  if settings.theme.enable_telescope_themes then
     local theme_ok, _ = pcall(require, "current-theme")
     if theme_ok then have_current = true end
   end
-
-  local set_theme = function(theme) Andromeda.settings.utils.set_colorscheme(theme) end
 
   if have_current then
     require("current-theme")
@@ -27,7 +25,7 @@ local function set_colorscheme(sty)
       theme = "tokyonight"
     end
 
-    Andromeda.settings.utils.set_colorscheme(theme)
+    Andromeda.lib.ui.set_colorscheme(theme)
   end
 end
 
@@ -40,13 +38,13 @@ end
 --- on_highlights = function(highlights, colors) end,
 
 local sidebars = "dark"
-if settings.enable_transparent then sidebars = "transparent" end
+if settings.theme.enable_transparent then sidebars = "transparent" end
 
 return {
   opts = {
     -- `storm`, `moon`, a darker variant `night` and `day`
-    style = settings.theme_style,
-    transparent = settings.enable_transparent,
+    style = settings.theme.style,
+    transparent = settings.theme.enable_transparent,
 
     light_style = "day", -- The theme is used when the background is set to light
     terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
@@ -81,33 +79,33 @@ return {
     },
   },
   config = function()
-    settings.utils.activate_colorscheme("tokyonight", function()
+    Andromeda.lib.ui.activate_colorscheme("tokyonight", function()
       vim.opt.background = "dark"
-      set_colorscheme(settings.theme_style)
+      set_colorscheme(settings.theme.style)
 
       vim.api.nvim_set_hl(0, "MiniJump", { fg = "#FFFFFF", bg = "#ff00a0" })
       vim.g.tokyonight_transparent = require("tokyonight.config").options.transparent
 
-      Andromeda.lib.map("n", "<leader>ut", function()
-        vim.g.tokyonight_transparent = not vim.g.tokyonight_transparent
+      -- Andromeda.lib.map("n", "<leader>ut", function()
+      --   vim.g.tokyonight_transparent = not vim.g.tokyonight_transparent
 
-        local sidebar = "dark"
-        if vim.g.tokyonight_transparent then sidebar = "transparent" end
+      --   local sidebar = "dark"
+      --   if vim.g.tokyonight_transparent then sidebar = "transparent" end
 
-        require("tokyonight").setup({
-          transparent = vim.g.tokyonight_transparent,
-          styles = {
-            comments = { italic = true },
-            keywords = { italic = true },
-            functions = {},
-            variables = {},
-            sidebars = sidebar,
-            floats = "dark",
-          },
-        })
+      --   require("tokyonight").setup({
+      --     transparent = vim.g.tokyonight_transparent,
+      --     styles = {
+      --       comments = { italic = true },
+      --       keywords = { italic = true },
+      --       functions = {},
+      --       variables = {},
+      --       sidebars = sidebar,
+      --       floats = "dark",
+      --     },
+      --   })
 
-        set_colorscheme(settings.theme_style)
-      end, { desc = "Toggle Transparency" })
+      --   set_colorscheme(settings.theme.style)
+      -- end, { desc = "Toggle Transparency" })
     end)
   end,
 }

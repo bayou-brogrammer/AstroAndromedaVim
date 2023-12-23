@@ -5,7 +5,7 @@ core["AstroNvim/astroui"] = {
   ---@type AstroUIOpts
   opts = {
     icons = Andromeda.icons,
-    colorscheme = Andromeda.settings.theme,
+    colorscheme = Andromeda.settings.theme.enabled,
   },
 }
 

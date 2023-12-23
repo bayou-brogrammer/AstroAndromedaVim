@@ -2,7 +2,7 @@ local settings = Andromeda.settings
 
 local function set_colorscheme(sty)
   local have_current = false
-  if settings.enable_telescope_themes then
+  if settings.theme.enable_telescope_themes then
     local theme_ok, _ = pcall(require, "current-theme")
     if theme_ok then have_current = true end
   end
@@ -22,7 +22,7 @@ local function set_colorscheme(sty)
       theme = "onedark"
     end
 
-    Andromeda.settings.utils.set_colorscheme(theme)
+    Andromeda.lib.ui.set_colorscheme(theme)
   end
 end
 
@@ -34,7 +34,7 @@ return {
     options = {
       cursorline = true, -- Use cursorline highlighting?
       terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
-      transparency = settings.enable_transparent, -- Use a transparent background?
+      transparency = settings.theme.enable_transparent, -- Use a transparent background?
       highlight_inactive_windows = true, -- When the window is out of focus, change the normal background?
     },
 
@@ -110,11 +110,11 @@ return {
   },
 
   config = function(_, opts)
-    settings.utils.activate_colorscheme("onedarkpro", function()
+    Andromeda.lib.ui.activate_colorscheme("onedarkpro", function()
       require("onedarkpro").setup(opts)
 
       vim.opt.background = "dark"
-      set_colorscheme(settings.theme_style)
+      set_colorscheme(settings.theme.style)
     end)
   end,
 }

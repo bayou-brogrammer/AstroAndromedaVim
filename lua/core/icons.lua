@@ -4,7 +4,7 @@
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 ---@enum (key) Icons
-Andromeda.icons = {
+local icons = {
   --! General
   ArrowClosed = "",
   ArrowLeft = "",
@@ -127,7 +127,7 @@ Andromeda.icons = {
 ---@param padding? integer Padding to add to the end of the icon
 ---@param wrap_icon? boolean Whether or not to disable fallback to text icon
 ---@return string icon
-Andromeda.icons.get = function(kind, padding, wrap_icon)
+icons.get = function(kind, padding, wrap_icon)
   wrap_icon = wrap_icon or false
   local icon = require("astroui").get_icon(kind, padding, true)
   if icon ~= "" and wrap_icon then return (" "):rep(padding or 0) .. icon end
@@ -138,4 +138,6 @@ end
 ---@param kind Icons The kind of icon in astroui.icons to retrieve
 ---@param padding? integer Padding to add to the end of the icon
 ---@return string icon
-Andromeda.icons.get_wrapped = function(kind, padding) return Andromeda.icons.get(kind, padding, true) end
+icons.get_wrapped = function(kind, padding) return icons.get(kind, padding, true) end
+
+return icons

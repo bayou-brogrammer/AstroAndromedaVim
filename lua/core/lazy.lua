@@ -81,17 +81,15 @@ function Lazy:load_lazy()
     checker = { enabled = true },
     change_detection = { enabled = true },
     defaults = { lazy = true, version = false },
-    install = { missing = true, colorscheme = Andromeda.settings.enabled_themes },
 
-    dev = {
-      path = "",
-      fallback = false,
-      patterns = { "AndromedaVim" },
+    install = {
+      missing = true,
+      colorscheme = Andromeda.settings.theme.enabled_themes,
     },
 
     ui = {
-      -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-      border = "double",
+      wrap = true, -- wrap the lines in the ui
+      border = Andromeda.settings.ui.float.border,
 
       icons = {
         ft = icons.File,
@@ -125,6 +123,12 @@ function Lazy:load_lazy()
           "zipPlugin",
         },
       },
+    },
+
+    dev = {
+      path = "",
+      fallback = false,
+      patterns = { "AndromedaVim" },
     },
   }
 

@@ -1,7 +1,7 @@
 local settings = Andromeda.settings
 
 return {
-  style = settings.theme_style, -- dark, darksoft, light
+  style = settings.theme.style, -- dark, darksoft, light
 
   styles = {
     variables = {},
@@ -30,6 +30,6 @@ return {
   },
 
   config = function(_, opts)
-    settings.utils.activate_colorscheme("lvim", function() require("lvim").setup(opts) end, true)
+    Andromeda.lib.ui.activate_colorscheme("lvim", function() require("lvim").setup(opts) end, true)
   end,
 }
