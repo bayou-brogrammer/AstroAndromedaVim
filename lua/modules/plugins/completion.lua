@@ -3,7 +3,7 @@ local cmp_plugins = {}
 cmp_plugins["hrsh7th/nvim-cmp"] = {
   event = "InsertEnter",
   dependencies = { "hrsh7th/cmp-emoji" },
-  config = require("completion.nvim-cmp"),
+  opts = require("completion.nvim-cmp"),
 }
 
 cmp_plugins["zbirenbaum/copilot.lua"] = {

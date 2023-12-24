@@ -89,18 +89,18 @@ langs["ocamllsp"] = {
   -- end,
 }
 
-langs["nil_ls"] = {
-  treesitter = { "nix" },
-  formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
-  -- none_ls = function(_, opts)
-  --   local nls = require("null-ls")
-  --   Andromeda.kit.extend_list_opt(opts, {
-  --     nls.builtins.code_actions.statix,
-  --     nls.builtins.formatting.alejandra,
-  --     nls.builtins.diagnostics.deadnix,
-  --   }, "sources")
-  -- end,
-}
+-- langs["nil_ls"] = {
+--   treesitter = { "nix" },
+--   formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
+--   -- none_ls = function(_, opts)
+--   --   local nls = require("null-ls")
+--   --   Andromeda.kit.extend_list_opt(opts, {
+--   --     nls.builtins.code_actions.statix,
+--   --     nls.builtins.formatting.alejandra,
+--   --     nls.builtins.diagnostics.deadnix,
+--   --   }, "sources")
+--   -- end,
+-- }
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
