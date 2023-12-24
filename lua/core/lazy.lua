@@ -1,26 +1,12 @@
 local Lazy = {}
 
 local USE_STABLE = false
-local icons = Andromeda.icons
 
 local vim_path = Globals.vim_path
 local data_dir = Globals.data_dir
 local modules_dir = vim_path .. "/lua/modules"
 local lazy_path = data_dir .. "lazy/lazy.nvim"
 local plugin_dir = modules_dir .. "/plugins/*.lua"
-
-function Lazy:init_lazy()
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-  if not vim.loop.fs_stat(lazypath) then
-    vim.g.astronvim_first_install = true -- lets AstroNvim know that this is an initial installation
-    -- stylua: ignore
-    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
-  end
-
-  ---@diagnostic disable-next-line: param-type-mismatch
-  vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-end
 
 function Lazy:append_nativertp()
   package.path = package.path
@@ -31,6 +17,27 @@ function Lazy:append_nativertp()
       modules_dir .. "/configs/?.lua",
       modules_dir .. "/configs/?/init.lua"
     )
+end
+
+function Lazy:init_lazy()
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.g.astronvim_first_install = true -- lets AstroNvim know that this is an initial installation
+    -- stylua: ignore
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+  end
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+  Lazy:append_nativertp()
+end
+
+function Lazy:init_andromeda()
+  --! Load all kits
+  require("utilities.path").load_dir("utilities")
+
+  Andromeda.lib.root.setup()
+  Andromeda.lib.format.setup()
 end
 
 function Lazy:load_plugins()
@@ -45,8 +52,6 @@ function Lazy:load_plugins()
 
     return list
   end
-
-  Lazy:append_nativertp()
 
   self.modules = {
     { import = "astronvim.lazy_snapshot", cond = USE_STABLE },
@@ -74,7 +79,10 @@ end
 
 function Lazy:load_lazy()
   self:init_lazy()
+  self:init_andromeda()
   self:load_plugins()
+
+  local icons = Andromeda.icons
 
   ---@class LazyConfig
   local lazy_opts = {

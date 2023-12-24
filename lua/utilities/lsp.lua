@@ -47,8 +47,8 @@ end
 function M.add_server(servers, config, handler)
   return function(_, opts)
     Andromeda.lib.extend_list_opt(opts, servers, "servers")
-    opts.config = Andromeda.lib.extend_tbl(opts.config or {}, config or {})
-    opts.handlers = Andromeda.lib.extend_tbl(opts.handlers or {}, handler or {})
+    opts.config = table.extend(opts.config or {}, config or {})
+    opts.handlers = table.extend(opts.handlers or {}, handler or {})
   end
 end
 

@@ -1,17 +1,9 @@
 ---@class Andromeda
+---@field icons Icons
+---@field lib AndromedaLib
+---@field settings AndromedaSettings
 Andromeda = {
-
-  icons = require("core.icons"),
-  ---@class AndromedaSettings
+  lib = {},
   settings = require("config"),
+  icons = require("core.icons") --[[@as Icons]],
 }
-
----@class AndromedaLibConfig
-Andromeda.lib = {}
-
---! Load all kits
-require("utilities.path").load_dir("utilities")
-require("utilities.path").load_dir("utilities.ui")
-
-Andromeda.lib.root.setup()
-Andromeda.lib.format.setup()

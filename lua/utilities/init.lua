@@ -1,8 +1,8 @@
----@class AndromedaLibConfig: LazyUtilCore
+---@class AndromedaLib: LazyUtilCore
 ---@field path AndromedaPathLib
 local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
-    -- if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
+    if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
     t[k] = require("utilities." .. k)
     return t[k]
   end,
@@ -24,29 +24,20 @@ end
 
 --! Keymap Methods
 
-M.map = function(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys --[[@as LazyKeysHandler]]
+-- M.map = function(mode, lhs, rhs, opts)
+--   local keys = require("lazy.core.handler").handlers.keys --[[@as LazyKeysHandler]]
 
-  -- do not create the keymap if a lazy keys handler exists
-  if keys ~= nil then
-    if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-      opts = opts or {}
-      opts.silent = opts.silent ~= false
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
-  end
-end
+--   -- do not create the keymap if a lazy keys handler exists
+--   if keys ~= nil then
+--     if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+--       opts = opts or {}
+--       opts.silent = opts.silent ~= false
+--       vim.keymap.set(mode, lhs, rhs, opts)
+--     end
+--   end
+-- end
 
 --! Table Methods
-
---- Merge extended options with a default table of options
----@param default? table The default table that you want to merge into
----@param opts? table The new options that should be merged with the default table
----@return table # The merged table
-function M.extend_tbl(default, opts)
-  opts = opts or {}
-  return default and vim.tbl_deep_extend("force", default, opts) or opts
-end
 
 ---@param opts table
 ---@param key? string
@@ -60,4 +51,4 @@ end
 
 ---@param opts table
 ---@param extension table
-function M.extend_opts(opts, extension) return M.extend_tbl(opts, extension) end
+function M.extend_opts(opts, extension) return table.extend(opts, extension) end

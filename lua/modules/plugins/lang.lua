@@ -107,7 +107,6 @@ langs["nil_ls"] = {
 local lsp_utils = Andromeda.lib.lsp
 local add_server = lsp_utils.add_server
 local add_lsp_deps = lsp_utils.add_lsp_deps
-local extend_tbl = Andromeda.lib.extend_tbl
 
 ---@param server string
 ---@param cfg AndromedaLanguageCfg
@@ -120,7 +119,7 @@ for server, cfg in pairs(langs) do
   end
 
   local opts = add_server(servers, cfg.config, cfg.handler)
-  local deps = extend_tbl(cfg.dependencies or {}, add_lsp_deps(servers, cfg.treesitter, cfg.none_ls, cfg.formatter))
+  local deps = table.extend(cfg.dependencies or {}, add_lsp_deps(servers, cfg.treesitter, cfg.none_ls, cfg.formatter))
   language_plugins[#language_plugins + 1] = { "AstroNvim/astrolsp", dependencies = deps, opts = opts }
 end
 
