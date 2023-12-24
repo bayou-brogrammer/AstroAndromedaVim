@@ -2,6 +2,14 @@
 
 **NOTE:** This is for AstroNvim v4+
 
+![dash](./_screenshots/dash.png)
+![telescope](./_screenshots/telescope.png)
+![cmp](./_screenshots/cmp.png)
+
+## Structure
+
+- `kit` - contains the core libraries of AndromedaVim
+
 ## 🛠️ Installation
 
 ### Make a backup of your current nvim and shared folder

@@ -19,7 +19,7 @@ conf.theme = {
   --   onedarkpro:  onedark, onelight, onedark_vivid, onedark_dark
   --   monokai-pro: classic, octagon, pro, machine, ristretto, spectrum
   --   nightfox:    carbonfox, dawnfox, dayfox, duskfox, nightfox, nordfox, terafox
-  style = "retrowave",
+  style = "default",
   enable_transparent = true, -- enable transparency if the theme supports it
 }
 
