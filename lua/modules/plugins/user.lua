@@ -14,7 +14,17 @@ user["andweeb/presence.nvim"] = {
 user["edluffy/specs.nvim"] = {
   lazy = true,
   event = "CursorMoved",
-  opts = require("ui.specs"),
+  opts = require("user.specs"),
+}
+
+user["doctorfree/cheatsheet.nvim"] = {
+  event = "VeryLazy",
+  cfg = "user.cheatsheet",
+  dependencies = {
+    { "nvim-telescope/telescope.nvim" },
+    { "nvim-lua/popup.nvim" },
+    { "nvim-lua/plenary.nvim" },
+  },
 }
 
 return user

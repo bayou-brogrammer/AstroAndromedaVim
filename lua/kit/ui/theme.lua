@@ -1,8 +1,6 @@
 ---@class AndromedaUIKit
 local M = Andromeda.kit.ui
 
---! <<<<<<<<<<< Colorschemes >>>>>>>>>>>>> --
-
 ---@param theme string
 M.is_theme_active = function(theme)
   return Andromeda.settings.theme.enabled_themes[theme] ~= nil and theme == Andromeda.settings.theme.enabled

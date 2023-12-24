@@ -2,12 +2,12 @@ local settings = Andromeda.settings
 local enabled_themes = settings.theme.enabled_themes
 
 local colorschemes = {
-  -- { "lvim-tech/lvim-colorscheme", cfg = "themes.lvim" },
-  -- { "olimorris/onedarkpro.nvim", cfg = "themes.onedark" },
+  { "lvim-tech/lvim-colorscheme", cfg = "themes.lvim" },
+  { "olimorris/onedarkpro.nvim", cfg = "themes.onedark" },
   { "maxmx03/fluoromachine.nvim", cfg = "themes.fluoromachine" },
-  -- { "craftzdog/solarized-osaka.nvim", cfg = "themes.solarized_osaka" },
-  -- { "catppuccin/nvim", name = "catppuccin", cfg = "themes.catppuccin" },
-  -- { "folke/tokyonight.nvim", branch = "main", cfg = "themes.tokyonight" },
+  { "craftzdog/solarized-osaka.nvim", cfg = "themes.solarized_osaka" },
+  { "catppuccin/nvim", name = "catppuccin", cfg = "themes.catppuccin" },
+  { "folke/tokyonight.nvim", branch = "main", cfg = "themes.tokyonight" },
 }
 
 colorschemes = table.map(colorschemes, function(_, theme)

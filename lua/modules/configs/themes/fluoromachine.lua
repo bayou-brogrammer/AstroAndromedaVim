@@ -15,17 +15,16 @@ end
 
 return {
   config = function()
-    -- Debug(Andromeda.kit.ui)
-    -- Andromeda.kit.ui.activate_colorscheme(
-    --   "fluoromachine",
-    --   function()
-    --     require("fluoromachine").setup({
-    --       glow = true,
-    --       theme = theme,
-    --       overrides = overrides,
-    --       transparent = settings.theme.enable_transparent,
-    --     })
-    --   end
-    -- )
+    Andromeda.kit.ui.activate_colorscheme(
+      "fluoromachine",
+      function()
+        require("fluoromachine").setup({
+          glow = true,
+          theme = theme,
+          overrides = overrides,
+          transparent = settings.theme.enable_transparent,
+        })
+      end
+    )
   end,
 }
