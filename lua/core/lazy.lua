@@ -9,14 +9,7 @@ local lazy_path = data_dir .. "lazy/lazy.nvim"
 local plugin_dir = modules_dir .. "/plugins/*.lua"
 
 function Lazy:append_nativertp()
-  package.path = package.path
-    .. string.format(
-      ";%s;%s;%s;",
-      modules_dir .. "/?.lua",
-      modules_dir .. "/?/init.lua",
-      modules_dir .. "/configs/?.lua",
-      modules_dir .. "/configs/?/init.lua"
-    )
+  package.path = package.path .. string.format(";%s;%s;", modules_dir .. "/?.lua", modules_dir .. "/configs/?.lua")
 end
 
 function Lazy:init_lazy()
@@ -65,7 +58,11 @@ function Lazy:load_plugins()
 
     if type(modules) == "table" then
       for name, conf in pairs(modules) do
-        if conf.cfg ~= nil then conf = vim.tbl_extend("force", conf, require(conf.cfg)) end
+        -- If cfg exist, then attempt to merge the cfg with the conf.
+        if conf.merge ~= nil then
+          if type(conf.merge) == "string" then conf.merge = require(conf.merge) end
+          conf = vim.tbl_extend("force", conf, conf.merge)
+        end
 
         if conf.import ~= nil or type(conf) == "string" then
           self.modules[#self.modules + 1] = conf

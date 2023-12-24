@@ -11,9 +11,9 @@ Plugin.deps = {
 }
 
 Plugin.opts = {
-  lazy_load = false,
+  lazy_load = true,
   close_on_select = true,
-  highlight_on_jump = false,
+  highlight_on_jump = true,
 
   manage_folds = "auto",
   attach_mode = "global",

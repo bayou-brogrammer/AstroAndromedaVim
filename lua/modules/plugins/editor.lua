@@ -1,11 +1,11 @@
 local editor = { "tpope/vim-fugitive", "tpope/vim-rhubarb", "tpope/vim-sleuth" }
 
-editor["nvim-neo-tree/neo-tree.nvim"] = { cmd = "Neotree", cfg = "editor.neotree" }
+editor["nvim-neo-tree/neo-tree.nvim"] = { cmd = "Neotree", merge = "editor.neotree" }
 editor["LunarVim/bigfile.nvim"] = { event = "LspAttach", opts = require("editor.bigfile") }
 
 editor["stevearc/aerial.nvim"] = {
   event = "User AstroFile",
-  cfg = "completion.aerial",
+  merge = "completion.aerial",
 }
 
 -- Automatically highlights other instances of the word under your cursor.

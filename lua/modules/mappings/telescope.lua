@@ -1,8 +1,5 @@
 return function(_, opts)
-  local astro = require("astrocore")
-
   local maps = opts.mappings
-  local is_available = astro.is_available
 
   --! Git
   maps.n["<Leader>g"] = opts._map_sections.g
@@ -81,7 +78,8 @@ return function(_, opts)
   }
   maps.n["<Leader>ls"] = {
     function()
-      if is_available("aerial.nvim") then
+      if Andromeda.kit.is_available("aerial.nvim") then
+        ---@diagnostic disable-next-line: undefined-field
         require("telescope").extensions.aerial.aerial()
       else
         require("telescope.builtin").lsp_document_symbols()
@@ -90,8 +88,9 @@ return function(_, opts)
     desc = "Search symbols",
   }
 
-  if is_available("nvim-notify") then
+  if Andromeda.kit.is_available("nvim-notify") then
     maps.n["<Leader>fn"] = {
+      ---@diagnostic disable-next-line: undefined-field
       function() require("telescope").extensions.notify.notify() end,
       desc = "Find notifications",
     }

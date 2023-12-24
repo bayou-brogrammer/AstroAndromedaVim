@@ -5,7 +5,7 @@ local language_plugins = {}
 
 language_plugins["nvim-treesitter/nvim-treesitter"] = {
   version = false, -- last release is way too old and doesn't work on Windows
-  cfg = "lang.treesitter",
+  merge = "lang.treesitter",
   build = ":TSUpdate",
   event = { "User AstroFile", "VeryLazy" },
   cmd = {
@@ -28,7 +28,7 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
 -- Show context of the current function
 language_plugins["nvim-treesitter/nvim-treesitter-context"] = {
   enabled = true,
-  cfg = "lang.treesitter-ctx",
+  merge = "lang.treesitter-ctx",
   event = "User AstroFile",
 }
 

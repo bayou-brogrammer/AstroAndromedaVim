@@ -10,11 +10,11 @@ ui["nvimdev/dashboard-nvim"] = {
 
 ui["echasnovski/mini.indentscope"] = {
   event = { "BufReadPre", "BufNewFile" },
-  cfg = "ui.indentscope",
+  merge = "ui.indentscope",
 }
 
 ui["folke/noice.nvim"] = {
-  cfg = "ui.noice",
+  merge = "ui.noice",
   event = { "User AstroFile", "VeryLazy" },
   dependencies = {
     { "MunifTanjim/nui.nvim", lazy = true },
@@ -24,12 +24,12 @@ ui["folke/noice.nvim"] = {
 }
 
 ui["folke/trouble.nvim"] = {
-  cfg = "ui.trouble",
+  merge = "ui.trouble",
   cmd = { "TroubleToggle", "Trouble" },
 }
 
 ui["rebelot/heirline.nvim"] = {
-  cfg = "ui.heirline",
+  merge = "ui.heirline",
 }
 
 return ui

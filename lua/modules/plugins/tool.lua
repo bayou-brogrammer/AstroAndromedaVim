@@ -11,7 +11,7 @@ tools["nvim-telescope/telescope.nvim"] = {
   lazy = true,
   version = false, -- telescope did only one release, so use HEAD for now
   cmd = "Telescope",
-  cfg = "tools.telescope",
+  merge = "tools.telescope",
 }
 
 return tools

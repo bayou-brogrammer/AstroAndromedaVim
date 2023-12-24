@@ -19,7 +19,7 @@ user["edluffy/specs.nvim"] = {
 
 user["doctorfree/cheatsheet.nvim"] = {
   event = "VeryLazy",
-  cfg = "user.cheatsheet",
+  merge = "user.cheatsheet",
   dependencies = {
     { "nvim-telescope/telescope.nvim" },
     { "nvim-lua/popup.nvim" },
