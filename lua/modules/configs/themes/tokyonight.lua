@@ -25,7 +25,7 @@ local function set_colorscheme(sty)
       theme = "tokyonight"
     end
 
-    Andromeda.lib.ui.set_colorscheme(theme)
+    Andromeda.kit.ui.set_colorscheme(theme)
   end
 end
 
@@ -79,14 +79,14 @@ return {
     },
   },
   config = function()
-    Andromeda.lib.ui.activate_colorscheme("tokyonight", function()
+    Andromeda.kit.ui.activate_colorscheme("tokyonight", function()
       vim.opt.background = "dark"
       set_colorscheme(settings.theme.style)
 
       vim.api.nvim_set_hl(0, "MiniJump", { fg = "#FFFFFF", bg = "#ff00a0" })
       vim.g.tokyonight_transparent = require("tokyonight.config").options.transparent
 
-      -- Andromeda.lib.map("n", "<leader>ut", function()
+      -- Andromeda.kit.map("n", "<leader>ut", function()
       --   vim.g.tokyonight_transparent = not vim.g.tokyonight_transparent
 
       --   local sidebar = "dark"

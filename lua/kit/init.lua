@@ -1,9 +1,9 @@
 ---@class AndromedaLib: LazyUtilCore
 ---@field path AndromedaPathLib
-local M = setmetatable(Andromeda.lib, {
+local M = setmetatable(Andromeda.kit, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = require("utilities." .. k)
+    t[k] = require("kit." .. k)
     return t[k]
   end,
 })

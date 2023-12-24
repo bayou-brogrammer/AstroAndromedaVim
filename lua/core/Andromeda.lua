@@ -1,9 +1,8 @@
 ---@class Andromeda
----@field icons Icons
 ---@field lib AndromedaLib
 ---@field settings AndromedaSettings
 Andromeda = {
-  lib = {},
+  kit = {},
   settings = require("config"),
-  icons = require("core.icons") --[[@as Icons]],
+  icons = require("core.icons"),
 }

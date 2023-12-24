@@ -1,8 +1,8 @@
 ---@class AndromedaUIKit
-Andromeda.lib.ui = {}
+Andromeda.kit.ui = {}
 
 ---@class AndromedaUIKit
-local M = Andromeda.lib.ui
+local M = Andromeda.kit.ui
 
 ---@alias Mark {pos:number[]}
 ---@alias Sign {name:string, text:string, texthl:string, priority:number}

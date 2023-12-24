@@ -5,7 +5,7 @@ return {
   config = function(_, opts)
     require("astroui").setup(opts)
 
-    Andromeda.lib.lsp.on_attach(function(_, bufnr)
+    Andromeda.kit.lsp.on_attach(function(_, bufnr)
       api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
         callback = function()

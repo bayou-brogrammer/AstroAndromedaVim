@@ -28,7 +28,7 @@ Debug = function(...)
     if i ~= #args then str = str .. ", " end
   end
 
-  -- Andromeda.lib.notify(str, { level = vim.log.levels.INFO, timeout = 0 })
+  -- Andromeda.kit.notify(str, { level = vim.log.levels.INFO, timeout = 0 })
   -- vim.schedule(function() vim.fn.getchar() end)
 
   Echo({ { str, "Normal" } }, false, true)

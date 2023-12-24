@@ -11,7 +11,7 @@ local colorschemes = {
 }
 
 colorschemes = table.map(colorschemes, function(_, theme)
-  local theme_key = theme.name or Andromeda.lib.path.get_filename(theme[1], false)
+  local theme_key = theme.name or Andromeda.kit.path.get_filename(theme[1], false)
 
   local config = theme.cfg and require(theme.cfg) or {}
   theme = table.extend(

@@ -6,7 +6,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "javascript", "typescript", "tsx" }, "highlight") end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "javascript", "typescript", "tsx" }, "highlight") end,
   },
   {
     "williamboman/mason-lspconfig.nvim",

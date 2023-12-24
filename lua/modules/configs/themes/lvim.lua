@@ -30,6 +30,6 @@ return {
   },
 
   config = function(_, opts)
-    Andromeda.lib.ui.activate_colorscheme("lvim", function() require("lvim").setup(opts) end, true)
+    Andromeda.kit.ui.activate_colorscheme("lvim", function() require("lvim").setup(opts) end, true)
   end,
 }

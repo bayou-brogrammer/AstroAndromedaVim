@@ -22,7 +22,7 @@ local function set_colorscheme(sty)
       theme = "onedark"
     end
 
-    Andromeda.lib.ui.set_colorscheme(theme)
+    Andromeda.kit.ui.set_colorscheme(theme)
   end
 end
 
@@ -110,7 +110,7 @@ return {
   },
 
   config = function(_, opts)
-    Andromeda.lib.ui.activate_colorscheme("onedarkpro", function()
+    Andromeda.kit.ui.activate_colorscheme("onedarkpro", function()
       require("onedarkpro").setup(opts)
 
       vim.opt.background = "dark"

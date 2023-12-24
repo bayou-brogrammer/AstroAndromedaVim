@@ -34,10 +34,10 @@ end
 
 function Lazy:init_andromeda()
   --! Load all kits
-  require("utilities.path").load_dir("utilities")
+  require("kit.path").load_dir("kit")
 
-  Andromeda.lib.root.setup()
-  Andromeda.lib.format.setup()
+  Andromeda.kit.root.setup()
+  Andromeda.kit.format.setup()
 end
 
 function Lazy:load_plugins()

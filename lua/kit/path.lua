@@ -1,8 +1,8 @@
 ---@type AndromedaPathLib
-Andromeda.lib.path = {}
+Andromeda.kit.path = {}
 
 ---@class AndromedaPathLib
-local M = Andromeda.lib.path
+local M = Andromeda.kit.path
 
 M.INIT_EXT = "init"
 M.CONFIG_PATH = Globals.vim_path .. "/lua/"

@@ -1,5 +1,5 @@
 ---@type AndromedaLspLib
-Andromeda.lib.lsp = {}
+Andromeda.kit.lsp = {}
 
 ---@diagnostic disable: inject-field
 ---@class AndromedaLanguageCfg
@@ -13,13 +13,13 @@ Andromeda.lib.lsp = {}
 ---@field none_ls? function
 
 ---@class AndromedaLspLib
-local M = Andromeda.lib.lsp
+local M = Andromeda.kit.lsp
 
 function M.add_lsp_deps(lsp_servers, treesitter_extension, none_ls_fn, formatter)
   local deps = {
     {
       "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, treesitter_extension) end,
+      opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, treesitter_extension) end,
     },
 
     {
@@ -46,7 +46,7 @@ end
 
 function M.add_server(servers, config, handler)
   return function(_, opts)
-    Andromeda.lib.extend_list_opt(opts, servers, "servers")
+    Andromeda.kit.extend_list_opt(opts, servers, "servers")
     opts.config = table.extend(opts.config or {}, config or {})
     opts.handlers = table.extend(opts.handlers or {}, handler or {})
   end

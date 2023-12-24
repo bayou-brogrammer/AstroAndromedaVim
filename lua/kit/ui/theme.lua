@@ -1,5 +1,5 @@
 ---@class AndromedaUIKit
-local M = Andromeda.lib.ui
+local M = Andromeda.kit.ui
 
 --! <<<<<<<<<<< Colorschemes >>>>>>>>>>>>> --
 
@@ -10,9 +10,9 @@ end
 
 ---@param theme string
 M.set_colorscheme = function(theme)
-  Andromeda.lib.try(function() vim.cmd.colorscheme(theme) end, {
+  Andromeda.kit.try(function() vim.cmd.colorscheme(theme) end, {
     on_error = function()
-      Andromeda.lib.notify(("Error setting up colorscheme: `%s`"):format(theme), vim.log.levels.ERROR)
+      Andromeda.kit.notify(("Error setting up colorscheme: `%s`"):format(theme), vim.log.levels.ERROR)
     end,
   })
 end
@@ -26,12 +26,12 @@ M.activate_colorscheme = function(scheme, setup_fn, activate_theme)
   if active_theme == scheme then
     activate_theme = activate_theme or M.is_theme_active(scheme) or false
 
-    Andromeda.lib.try(function()
+    Andromeda.kit.try(function()
       setup_fn()
       if activate_theme then M.set_colorscheme(scheme) end
     end, {
       on_error = function()
-        Andromeda.lib.notify(("Error activating colorscheme: `%s`"):format(scheme), vim.log.levels.ERROR)
+        Andromeda.kit.notify(("Error activating colorscheme: `%s`"):format(scheme), vim.log.levels.ERROR)
       end,
     })
   end

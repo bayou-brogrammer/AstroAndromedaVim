@@ -76,7 +76,7 @@ langs["lua_ls"] = {
   },
   formatter = { formatters_by_ft = { lua = { "stylua" } } },
   none_ls = function(_, opts)
-    Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.stylua }, "sources")
+    Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.stylua }, "sources")
   end,
 }
 
@@ -85,7 +85,7 @@ langs["ocamllsp"] = {
   config = { ocamllsp = { codelens = { enable = true } } },
   formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
   none_ls = function(_, opts)
-    Andromeda.lib.extend_list_opt(opts, { require("null-ls").builtins.formatting.ocamlformat }, "sources")
+    Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.ocamlformat }, "sources")
   end,
 }
 
@@ -94,7 +94,7 @@ langs["nil_ls"] = {
   formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
   none_ls = function(_, opts)
     local nls = require("null-ls")
-    Andromeda.lib.extend_list_opt(opts, {
+    Andromeda.kit.extend_list_opt(opts, {
       nls.builtins.code_actions.statix,
       nls.builtins.formatting.alejandra,
       nls.builtins.diagnostics.deadnix,
@@ -104,7 +104,7 @@ langs["nil_ls"] = {
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-local lsp_utils = Andromeda.lib.lsp
+local lsp_utils = Andromeda.kit.lsp
 local add_server = lsp_utils.add_server
 local add_lsp_deps = lsp_utils.add_lsp_deps
 

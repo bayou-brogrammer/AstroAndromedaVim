@@ -115,7 +115,7 @@ return function()
         { action = "Telescope find_files",                                          desc = " Find file",    icon = get_icon ("Search"),    key = "f" },
         { action = "Telescope oldfiles",                                            desc = " Recent files", icon = get_icon ("Files"),     key = "r" },
         { action = "Telescope live_grep",                                           desc = " Find text",    icon = get_icon ("Keyboard"),  key = "g" },
-        { action = function() Andromeda.lib.telescope.config_files()() end,         desc = " Config",       icon = get_icon ("Gear"),      key = "c" },
+        { action = function() Andromeda.kit.telescope.config_files()() end,         desc = " Config",       icon = get_icon ("Gear"),      key = "c" },
         { action = "Lazy",                                                          desc = " Lazy",         icon = get_icon ("Lazy"),      key = "l" },
         { action = "qa",                                                            desc = " Quit",         icon = get_icon ("Power"),     key = "q" },
       },

@@ -1,8 +1,8 @@
 ---@type AndromedaInjectLib
-Andromeda.lib.inject = {}
+Andromeda.kit.inject = {}
 
 ---@class AndromedaInjectLib
-local M = Andromeda.lib.inject
+local M = Andromeda.kit.inject
 
 function M.get_upvalue(func, name)
   local i = 1

@@ -43,6 +43,6 @@ return {
     },
   },
   config = function(_, opts)
-    Andromeda.lib.ui.activate_colorscheme("catppuccin", function() require("catppuccin").setup(opts) end, true)
+    Andromeda.kit.ui.activate_colorscheme("catppuccin", function() require("catppuccin").setup(opts) end, true)
   end,
 }

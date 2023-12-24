@@ -12,10 +12,10 @@ return {
 
         tsc.toggle()
 
-        if Andromeda.lib.inject.get_upvalue(tsc.toggle, "enabled") then
-          Andromeda.lib.info("Enabled Treesitter Context", { title = "Option" })
+        if Andromeda.kit.inject.get_upvalue(tsc.toggle, "enabled") then
+          Andromeda.kit.info("Enabled Treesitter Context", { title = "Option" })
         else
-          Andromeda.lib.warn("Disabled Treesitter Context", { title = "Option" })
+          Andromeda.kit.warn("Disabled Treesitter Context", { title = "Option" })
         end
       end,
       desc = "Toggle Treesitter Context",

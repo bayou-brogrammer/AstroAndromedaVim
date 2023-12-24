@@ -15,8 +15,8 @@ end
 
 return {
   config = function()
-    -- Debug(Andromeda.lib.ui)
-    -- Andromeda.lib.ui.activate_colorscheme(
+    -- Debug(Andromeda.kit.ui)
+    -- Andromeda.kit.ui.activate_colorscheme(
     --   "fluoromachine",
     --   function()
     --     require("fluoromachine").setup({
