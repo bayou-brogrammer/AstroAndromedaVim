@@ -1,4 +1,4 @@
----@type AndromedaLspLib
+---@type AndromedaLspKit
 Andromeda.kit.lsp = {}
 
 ---@diagnostic disable: inject-field
@@ -12,7 +12,7 @@ Andromeda.kit.lsp = {}
 ---@field dependencies? table
 ---@field none_ls? function
 
----@class AndromedaLspLib
+---@class AndromedaLspKit
 local M = Andromeda.kit.lsp
 
 function M.add_lsp_deps(lsp_servers, treesitter_extension, none_ls_fn, formatter)

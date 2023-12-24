@@ -1,5 +1,5 @@
 ---@class Andromeda
----@field lib AndromedaLib
+---@field kit AndromedaKit
 ---@field settings AndromedaSettings
 Andromeda = {
   kit = {},

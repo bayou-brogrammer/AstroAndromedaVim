@@ -1,7 +1,7 @@
----@type AndromedaPathLib
+---@type AndromedaPathKit
 Andromeda.kit.path = {}
 
----@class AndromedaPathLib
+---@class AndromedaPathKit
 local M = Andromeda.kit.path
 
 M.INIT_EXT = "init"

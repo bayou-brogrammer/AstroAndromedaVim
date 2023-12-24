@@ -1,7 +1,7 @@
----@type AndromedaFormatLib
+---@type AndromedaFormatKit
 Andromeda.kit.format = {}
 
----@class AndromedaFormatLib
+---@class AndromedaFormatKit
 local M = setmetatable(Andromeda.kit.format, {
   __call = function(m, ...) return m.format(...) end,
 })
