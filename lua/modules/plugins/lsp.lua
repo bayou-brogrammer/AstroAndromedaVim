@@ -1,10 +1,9 @@
-local mason_cfg = require("completion.mason")
-
 local lsp_plugins = {}
+local mason_cfg = require("completion.mason")
 
 lsp_plugins["AstroNvim/astrolsp"] = {
   "AstroNvim/astrolsp",
-  merge = "lsp.lsp",
+  merge = require("lsp.lsp"),
   dependencies = {
     { "hrsh7th/cmp-nvim-lsp" },
     { "williamboman/mason.nvim", opts = mason_cfg["mason"] },

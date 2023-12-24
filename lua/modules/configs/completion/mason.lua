@@ -19,18 +19,18 @@ end
 
 M["mason-null-ls"] = function(_, opts)
   -- add more things to the ensure_installed table protecting against community packs modifying it
-  opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-    "prettier",
-    "stylua",
-    "eslint_d",
-  })
+  -- opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+  --   "prettier",
+  --   "stylua",
+  --   "eslint_d",
+  -- })
 end
 
 M["mason-nvim-dap"] = function(_, opts)
   -- add more things to the ensure_installed table protecting against community packs modifying it
-  opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-    -- "python",
-  })
+  -- opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+  --   -- "python",
+  -- })
 end
 
 return M

@@ -19,12 +19,8 @@ user["edluffy/specs.nvim"] = {
 
 user["doctorfree/cheatsheet.nvim"] = {
   event = "VeryLazy",
-  merge = "user.cheatsheet",
-  dependencies = {
-    { "nvim-telescope/telescope.nvim" },
-    { "nvim-lua/popup.nvim" },
-    { "nvim-lua/plenary.nvim" },
-  },
+  merge = require("user.cheatsheet"),
+  dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" },
 }
 
 return user

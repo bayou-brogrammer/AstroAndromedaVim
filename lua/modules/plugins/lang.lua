@@ -5,8 +5,8 @@ local language_plugins = {}
 
 language_plugins["nvim-treesitter/nvim-treesitter"] = {
   version = false, -- last release is way too old and doesn't work on Windows
-  merge = "lang.treesitter",
   build = ":TSUpdate",
+  merge = require("lang.treesitter"),
   event = { "User AstroFile", "VeryLazy" },
   cmd = {
     "TSBufDisable",
@@ -28,8 +28,8 @@ language_plugins["nvim-treesitter/nvim-treesitter"] = {
 -- Show context of the current function
 language_plugins["nvim-treesitter/nvim-treesitter-context"] = {
   enabled = true,
-  merge = "lang.treesitter-ctx",
   event = "User AstroFile",
+  merge = require("lang.treesitter-ctx"),
 }
 
 language_plugins[#language_plugins + 1] = { import = "modules.configs.lang.ts_deno" }
@@ -39,67 +39,67 @@ language_plugins[#language_plugins + 1] = { import = "modules.configs.lang.ts_de
 ---@type table<string, AndromedaLanguageCfg>
 local langs = {}
 
-langs["lua_ls"] = {
-  treesitter = { "lua" },
-  config = {
-    lua_ls = {
-      -- before_init = require("neodev.lsp").before_init,
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            globals = {
-              "vim",
-              "describe",
-              "it",
-              "before_each",
-              "after_each",
-              "pending",
-              "nnoremap",
-              "vnoremap",
-              "inoremap",
-              "tnoremap",
-            },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    },
-  },
-  formatter = { formatters_by_ft = { lua = { "stylua" } } },
-  none_ls = function(_, opts)
-    Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.stylua }, "sources")
-  end,
-}
+-- langs["lua_ls"] = {
+--   treesitter = { "lua" },
+--   formatter = {
+--     formatters_by_ft = {
+--       lua = { "stylua" },
+--     },
+--   },
+--   -- none_ls = function(_, opts)
+--   --   Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.stylua }, "sources")
+--   -- end,
+--   config = {
+--     lua_ls = {
+--       -- before_init = require("neodev.lsp").before_init,
+--       settings = {
+--         Lua = {
+--           telemetry = { enable = false },
+--           runtime = { version = "LuaJIT" },
+--           workspace = {
+--             checkThirdParty = false,
+--             library = vim.api.nvim_get_runtime_file("", true),
+--           },
+--           diagnostics = {
+--             globals = {
+--               "vim",
+--               "describe",
+--               "it",
+--               "before_each",
+--               "after_each",
+--               "pending",
+--               "nnoremap",
+--               "vnoremap",
+--               "inoremap",
+--               "tnoremap",
+--             },
+--           },
+--         },
+--       },
+--     },
+--   },
+-- }
 
 langs["ocamllsp"] = {
   treesitter = { "ocaml" },
   config = { ocamllsp = { codelens = { enable = true } } },
   formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
-  none_ls = function(_, opts)
-    Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.ocamlformat }, "sources")
-  end,
+  -- none_ls = function(_, opts)
+  --   Andromeda.kit.extend_list_opt(opts, { require("null-ls").builtins.formatting.ocamlformat }, "sources")
+  -- end,
 }
 
 langs["nil_ls"] = {
   treesitter = { "nix" },
   formatter = { formatters_by_ft = { ["ocaml"] = { "ocamlformat" } } },
-  none_ls = function(_, opts)
-    local nls = require("null-ls")
-    Andromeda.kit.extend_list_opt(opts, {
-      nls.builtins.code_actions.statix,
-      nls.builtins.formatting.alejandra,
-      nls.builtins.diagnostics.deadnix,
-    }, "sources")
-  end,
+  -- none_ls = function(_, opts)
+  --   local nls = require("null-ls")
+  --   Andromeda.kit.extend_list_opt(opts, {
+  --     nls.builtins.code_actions.statix,
+  --     nls.builtins.formatting.alejandra,
+  --     nls.builtins.diagnostics.deadnix,
+  --   }, "sources")
+  -- end,
 }
 
 --! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

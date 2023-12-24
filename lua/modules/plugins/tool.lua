@@ -11,7 +11,7 @@ tools["nvim-telescope/telescope.nvim"] = {
   lazy = true,
   version = false, -- telescope did only one release, so use HEAD for now
   cmd = "Telescope",
-  merge = "tools.telescope",
+  merge = require("tools.telescope"),
 }
 
 return tools

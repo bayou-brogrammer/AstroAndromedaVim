@@ -43,9 +43,13 @@ core["AstroNvim/astrolsp"] = {
     diagnostics = { virtual_text = true, underline = true },
 
     formatting = {
-      disabled = {},
+      disabled = true,
       timeout_ms = 1000, -- default format timeout
-      format_on_save = { enabled = true, allow_filetypes = {}, ignore_filetypes = {} },
+      format_on_save = {
+        enabled = false,
+        allow_filetypes = {},
+        ignore_filetypes = {},
+      },
     },
 
     -- mappings to be set up on attaching of a language server

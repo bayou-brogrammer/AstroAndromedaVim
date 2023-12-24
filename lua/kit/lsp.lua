@@ -31,15 +31,12 @@ function M.add_lsp_deps(lsp_servers, treesitter_extension, none_ls_fn, formatter
     },
   }
 
-  if formatter ~= nil then
-    deps[#deps + 1] = {
-      "stevearc/conform.nvim",
-      optional = true,
-      opts = formatter,
-    }
-  end
+  if formatter ~= nil then deps[#deps + 1] = {
+    "stevearc/conform.nvim",
+    opts = formatter,
+  } end
 
-  if none_ls_fn ~= nil then deps[#deps + 1] = { "nvimtools/none-ls.nvim", optional = true, opts = none_ls_fn } end
+  -- if none_ls_fn ~= nil then deps[#deps + 1] = { "nvimtools/none-ls.nvim", optional = true, opts = none_ls_fn } end
 
   return deps
 end

@@ -2,18 +2,18 @@ local settings = Andromeda.settings
 local enabled_themes = settings.theme.enabled_themes
 
 local colorschemes = {
-  { "lvim-tech/lvim-colorscheme", merge = "themes.lvim" },
-  { "olimorris/onedarkpro.nvim", merge = "themes.onedark" },
-  { "maxmx03/fluoromachine.nvim", merge = "themes.fluoromachine" },
-  { "craftzdog/solarized-osaka.nvim", merge = "themes.solarized_osaka" },
-  { "catppuccin/nvim", name = "catppuccin", merge = "themes.catppuccin" },
-  { "folke/tokyonight.nvim", branch = "main", merge = "themes.tokyonight" },
+  { "lvim-tech/lvim-colorscheme", merge = require("themes.lvim") },
+  { "olimorris/onedarkpro.nvim", merge = require("themes.onedark") },
+  { "maxmx03/fluoromachine.nvim", merge = require("themes.fluoromachine") },
+  { "craftzdog/solarized-osaka.nvim", merge = require("themes.solarized_osaka") },
+  { "catppuccin/nvim", name = "catppuccin", merge = require("themes.catppuccin") },
+  { "folke/tokyonight.nvim", branch = "main", merge = require("themes.tokyonight") },
 }
 
 colorschemes = table.map(colorschemes, function(_, theme)
   local theme_key = theme.name or Andromeda.kit.path.get_filename(theme[1], false)
 
-  local config = theme.merge and require(theme.merge) or {}
+  local config = theme.merge or {}
   theme = table.extend(
     theme,
     { lazy = false, priority = 1000, enabled = table.find(enabled_themes, theme_key) ~= nil },
