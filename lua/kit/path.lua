@@ -62,7 +62,7 @@ function M.get_lua_files(dir) return M.get_files(M.CONFIG_PATH .. dir .. "/*.lua
 local DEFAULT_LOAD_OPTS = {
   filter = nil,
   load_fn = require,
-  skip_directories = true,
+  skip_directories = false,
 }
 
 ---@param dir string
